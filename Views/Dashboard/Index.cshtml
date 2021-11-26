@@ -1,0 +1,421 @@
+﻿<script src="/js/amcharts/core.js"></script>
+<script src="/js/amcharts/charts.js"></script>
+<script src="/js/amcharts/animated.js"></script>
+<script>
+	am4core.ready(function () {
+
+	});
+
+	function update_chart(data) {
+		am4core.useTheme(am4themes_animated);
+		am4core.disposeAllCharts();
+		var chart = am4core.create("chartdiv", am4charts.XYChart);
+		console.log(data)
+
+		var periodos_unicos = data.map(x => x.key.anio).filter((item, i, ar) => ar.indexOf(item) === i);
+
+		var dataChart = [];
+		for (var i = 0; i < data.length; i++) {
+			var date = new Date(data[i].key.anio, (data[i].key.trimestre - 1) * 3, 1);
+			dataChart.push({
+				date: date,
+				periodo: data[i].key.anio,
+				value: data[i].gei,
+				value_gei_estimado: data[i].key.indicador == "GEI estimado" ? data[i].gei : null,
+				value_gei_con: data[i].key.indicador == "GEI proyectado con NAMA TRANSPerú" ? data[i].gei : null,
+				value_gei_sin: data[i].key.indicador == "GEI proyectado sin NAMA TRANSPerú" ? data[i].gei : null,
+				category: data[i].key.indicador
+			});
+		}
+		var dataChartUnique = [];
+
+		for (var j = 0; j < periodos_unicos.length; j++) {
+			console.log(periodos_unicos[j])
+			var gei_est = null;
+			var gei_con = null;
+			var gei_sin = null;
+
+			for (var i = 0; i < dataChart.length; i++) {
+				if (dataChart[i].periodo == periodos_unicos[j]) {
+					var date = dataChart[i].date;
+					if(dataChart[i].value_gei_estimado != null){gei_est=dataChart[i].value_gei_estimado};
+					if(dataChart[i].value_gei_con != null) {gei_con = dataChart[i].value_gei_con};
+					if(dataChart[i].value_gei_sin != null) {gei_sin = dataChart[i].value_gei_sin};
+				}
+			}
+			dataChartUnique.push({
+				date: date,
+				value_gei_estimado: gei_est,
+				value_gei_con: gei_con,
+				value_gei_sin: gei_sin,
+			});
+		}
+		console.log(dataChartUnique)
+
+		//var dataChart = [];
+		//for (var i = 0; i < data.length; i++) {
+		//	var date = new Date(data[i].key.anio, (data[i].key.trimestre - 1) * 3, 1);
+		//	dataChart.push({
+		//		date: date,
+		//		value: data[i].gei,
+		//		value_gei_estimado: data[i].key.indicador == "GEI estimado" ? data[i].gei : null,
+		//		value_gei_con: data[i].key.indicador == "GEI proyectado con NAMA TRANSPerú" ? data[i].gei : null,
+		//		value_gei_sin: data[i].key.indicador == "GEI proyectado sin NAMA TRANSPerú" ? data[i].gei : null,
+		//		category: data[i].key.indicador
+		//	});
+		//}
+		chart.data = dataChartUnique;
+
+		var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+		dateAxis.renderer.minGridDistance = 60;
+		dateAxis.title.text = "Año"
+
+		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		valueAxis.title.text = "Millones de Toneladas de CO2eq"
+
+		var tooltipText = `[bold]GEI [/]
+----
+Sin NAMA TRANSPerú: {value_gei_sin}
+Con NAMA TRANSPerú: {value_gei_con}`;
+
+		var series = chart.series.push(new am4charts.LineSeries());
+		series.name = "GEI Estimado";
+		series.dataFields.valueY = "value_gei_estimado";
+		series.dataFields.dateX = "date";
+		series.strokeWidth = 4;
+		series.stroke = am4core.color("#91a3b2");
+		series.connect = true;
+		series.tooltipText = "GEI {value_gei_estimado}";
+		series.tooltip.pointerOrientation = "vertical";
+		series.tooltip.getFillFromObject = false;
+		series.tooltip.background.fill = am4core.color("#91a3b2");
+		series.smoothing = "monotoneX";
+
+		var bullet = series.bullets.push(new am4charts.CircleBullet());
+		bullet.circle.stroke = am4core.color("#fff");
+		bullet.fill = am4core.color("#91a3b2");
+		bullet.circle.strokeWidth = 2;
+
+		var series2 = chart.series.push(new am4charts.LineSeries());
+		series2.name = "GEI proyectado con NAMA TRANSPer\u00FA";
+		series2.dataFields.valueY = "value_gei_con";
+		series2.dataFields.dateX = "date";
+		series2.strokeWidth = 4;
+		series2.stroke = am4core.color("#60994b");
+		series2.tooltipText = tooltipText;//"GEI {value}";
+		series2.tooltip.pointerOrientation = "vertical";
+		series2.tooltip.getFillFromObject = false;
+		series2.tooltip.background.fill = am4core.color("#60994b");
+		series2.smoothing = "monotoneX";
+
+		var bullet2 = series2.bullets.push(new am4charts.CircleBullet());
+		bullet2.circle.stroke = am4core.color("#fff");
+		bullet2.fill = am4core.color("#60994b");
+		bullet2.circle.strokeWidth = 2;
+
+		var series3 = chart.series.push(new am4charts.LineSeries());
+		series3.name = "GEI proyectado sin NAMA TRANSPer\u00FA";
+		series3.dataFields.valueY = "value_gei_sin";
+		series3.dataFields.dateX = "date";
+		series3.strokeWidth = 4;
+		series3.stroke = am4core.color("#de5e6c");
+		series3.tooltipText = tooltipText;//"GEI {value}";
+		series3.tooltip.pointerOrientation = "vertical";
+		series3.tooltip.getFillFromObject = false;
+		series3.tooltip.background.fill = am4core.color("#de5e6c");
+		series3.smoothing = "monotoneX";
+
+		var bullet3 = series3.bullets.push(new am4charts.CircleBullet());
+		bullet3.circle.stroke = am4core.color("#fff");
+		bullet3.fill = am4core.color("#de5e6c");
+		bullet3.circle.strokeWidth = 2;
+
+
+
+
+
+		chart.cursor = new am4charts.XYCursor();
+		chart.cursor.xAxis = dateAxis;
+		chart.legend = new am4charts.Legend();
+		chart.scrollbarX = new am4core.Scrollbar();
+		chart.cursor.maxTooltipDistance = -1;
+	}
+
+
+	function onlyUnique(value, index, self) {
+		return self.indexOf(value) === index;
+	}
+
+	function update_option(data) {
+
+		var dataActividad = [];
+		for (var i = 0; i < data.length; i++) {
+			var actividad = data[i].key.actividad;
+			dataActividad.push(actividad);
+		}
+
+		var componente_list = jQuery('#actividad')
+			.find('option')
+			.remove()
+			.end()
+			.append('<option value="Todos">Todos</option>');
+
+
+		for (var i = 0; i < dataActividad.length; i++) {
+			componente_list.append('<option value="' + dataActividad[i] + '"">' + dataActividad[i] + '</option>');
+		}
+		componente_list.val('Todos')
+
+
+	}
+
+	function actividad_todos() {
+		if (jQuery("#actividad").val() == "Todos") {
+			cadena_actidad = "";
+		} else {
+			cadena_actidad = jQuery("#actividad").val();
+		}
+		return cadena_actidad;
+	}
+
+	function seleccionar(objeto) {
+		if (jQuery("#componente").val() == '') {
+			iniciar_grafico();
+		} else {
+			cadena_actidad = actividad_todos()
+			jQuery.ajax({
+				type: "get",
+				url: "/api/avances",
+				async: true,
+				data: "componente=" + jQuery("#componente").val() + "&medioTransporte=" + jQuery("#medioTransporte").val() + "&actividad=" + cadena_actidad + "&ubicacion=" + jQuery("#ubicacion").val() + "&provincia=" + jQuery("#provincia").val(),
+				datatype: "json",
+				success: function (data) {
+					update_chart(data);
+					jQuery("#chartdiv").css('visibility', 'inherit');
+				},
+				error: function () {
+					alert("Ocurrio un error al descargar los datos ");
+				}
+			});
+
+		}
+
+	}
+
+	function seleccionar_componente(objeto) {
+		if (jQuery("#componente").val() == "") {
+			return;
+		}
+		jQuery.ajax({
+			type: "get",
+			url: "/api/actividades",
+			async: true,
+			data: "componente=" + jQuery("#componente").val(),
+			datatype: "json",
+			success: function (data) {
+				update_option(data);
+				seleccionar(null);
+				if (jQuery('#componente').val() == 'Todos') {
+					iniciar_grafico();
+				}
+			},
+			error: function () {
+				alert("Ocurrio un error al descargar los datos ");
+			}
+		});
+	}
+
+	function iniciar_grafico() {
+		if (jQuery("#componente").val() == "") {
+			return;
+		}
+		jQuery.ajax({
+			type: "get",
+			url: "/api/totales",
+			async: true,
+			datatype: "json",
+			success: function (data) {
+				update_chart(data);
+				jQuery("#chartdiv").css('visibility', 'inherit');
+			},
+			error: function () {
+				alert("Ocurrio un error al descargar los datos ");
+			}
+		});
+	}
+
+	function iniciar_comparacion() {
+		if ((jQuery("#componente").val() == '')) {
+			iniciar_grafico();
+		} else {
+			seleccionar_componente(null)
+		}
+
+	}
+
+	window.onload = iniciar_grafico()
+</script>
+
+<div data-css_id="tb_rvnb674" data-lazy="1"
+	class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+	<div class="row_inner col_align_top tf_box tf_w tf_rel">
+		<div data-lazy="1" class="module_column tb-column col-full first tb_og2k674 tf_box">
+			<div class="tb-column-inner tf_box tf_w">
+				<div class="module module-text tb_kbdb675  repeat " data-lazy="1">
+					<div class="tb_text_wrap">
+						<p>Dashboard de reducci&oacute;n GEI</p>
+					</div>
+				</div>
+				<div class="module tf_mw module-divider tb_hp5y675 solid  divider-custom divider-left"
+					style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;" data-lazy="1">
+				</div>
+				<form action="#" style="margin-top: 4%;">
+					<label for="componente">Componente de la matriz NAMA TRANSPerú:</label><br>
+					<select id="componente" name="componente" onchange="iniciar_comparacion(this);">
+						<option value="Todos" selected>Todos</option>
+						<option
+							value="Componente 1: Sistema de Transporte Público Masivo Integrado en Lima Metropolitana y Callao">
+							Componente 1: Sistema de Transporte Público Masivo Integrado en Lima Metropolitana y Callao
+						</option>
+						<option value="Componente 2: Desarrollo del modo de transporte no motorizado">
+							Componente 2: Desarrollo del modo de transporte no motorizado
+						</option>
+						<option
+							value="Componente 4: Control y mitigación de emisiones de gases de efecto invernadero y gases contaminantes del parque automotor">
+							Componente 4: Control y mitigación de emisiones de gases de efecto invernadero y gases
+							contaminantes del parque automotor
+						</option>
+					</select><br>
+
+					<label for="actividad">Actividad* :</label><br>
+					<select id="actividad" name="actividad" onchange="seleccionar(this);">
+						<option value="" selected>Todos</option>
+						<option
+							value="(01)   Ejecutar el proyecto de inversión de la Línea 2 y ramal de la Línea 4 del Metro de Lima">
+							(01)   Ejecutar el proyecto de inversión de la Línea 2 y ramal de la Línea 4 del Metro de
+							Lima</option>
+						<option
+							value="(04)   Ampliar el Tramo Norte del COSAC I desde la Estación El Naranjal hasta la Av. Chimpu Ocllo">
+							(04)   Ampliar el Tramo Norte del COSAC I desde la Estación El Naranjal hasta la Av. Chimpu
+							Ocllo</option>
+						<option
+							value="(05)   Segregación de los Corredores Complementarios Rojo, Azul y Morado para el tránsito exclusivo de los buses de transporte público">
+							(05)   Segregación de los Corredores Complementarios Rojo, Azul y Morado para el tránsito
+							exclusivo de los buses de transporte público</option>
+						<option
+							value="(09)   Remodelación del Sistema de Control de Pasajeros de la Línea 1 de la Red Básica del Metro de Lima">
+							(09)   Remodelación del Sistema de Control de Pasajeros de la Línea 1 de la Red Básica del
+							Metro de Lima</option>
+						<option value="(10)   Estudio de preinversion a nivel de perfil del Proyecto: " Creación del
+							Centro de Control y Cámara de Compensación para la Red del Metro de Lima y Callao"">(10)  
+							Estudio de preinversion a nivel de perfil del Proyecto: "Creación del Centro de Control y
+							Cámara de Compensación para la Red del Metro de Lima y Callao"</option>
+						<option
+							value="(14)   Desarrollar mega eventos para promover la movilidad urbana sostenible mediante el transporte no motorizado">
+							(14)   Desarrollar mega eventos para promover la movilidad urbana sostenible mediante el
+							transporte no motorizado</option>
+						<option value="(15)   Crear ciclovías en Lima Metropolitana">(15)   Crear ciclovías en Lima
+							Metropolitana</option>
+						<option value="(16)   Rehabilitar ciclovías existentes en Lima Metropolitana">(16)   Rehabilitar
+							ciclovías existentes en Lima Metropolitana</option>
+						<option
+							value="(17)   Diseñar, planificar, desarrollar y monitorear la implementación del Sistema de Transporte Individual Sostenible (SITIS) en Lima y Callao">
+							(17)   Diseñar, planificar, desarrollar y monitorear la implementación del Sistema de
+							Transporte Individual Sostenible (SITIS) en Lima y Callao</option>
+						<option
+							value="(18)   Fortalecer el componente de intermodalidad en el Sistema Integrado de Transporte (SIT) de Lima y Callao para su articulación con el SITIS, de tal forma que las usuarias y los usuarios puedan integrar sus viajes en modos de transporte individuales (bicicleta, scooter, entre otros) con los modos de transporte masivos">
+							(18)   Fortalecer el componente de intermodalidad en el Sistema Integrado de Transporte
+							(SIT) de Lima y Callao para su articulación con el SITIS, de tal forma que las usuarias y
+							los usuarios puedan integrar sus viajes en modos de transporte individuales (bicicleta,
+							scooter, entre otros) con los modos de transporte masivos</option>
+						<option
+							value="(19)   Promover campañas de sensibilización para mejorar la convivencia vial entre los actores de la movilidad urbana (peatón, ciclista y conductores)">
+							(19)   Promover campañas de sensibilización para mejorar la convivencia vial entre los
+							actores de la movilidad urbana (peatón, ciclista y conductores)</option>
+						<option
+							value="(20)   Desarrollar programas de movilidad en bicicleta para promover el uso seguro de este vehículo por la ciudad (Al cole en bici, A la uni en bici, Al trabajo en bici, Escuela de Ciclismo Urbano Descentralizada, Asistencia mecánica, entre otros)">
+							(20)   Desarrollar programas de movilidad en bicicleta para promover el uso seguro de este
+							vehículo por la ciudad (Al cole en bici, A la uni en bici, Al trabajo en bici, Escuela de
+							Ciclismo Urbano Descentralizada, Asistencia mecánica, entre otros)</option>
+						<option
+							value="(21)   Desarrollar acciones para la promoción de la movilidad sostenible en Lima y Callao con entidades del Estado y/o empresas, a efectos de que prioricen y faciliten el modo de transporte no motorizado ">
+							(21)   Desarrollar acciones para la promoción de la movilidad sostenible en Lima y Callao
+							con entidades del Estado y/o empresas, a efectos de que prioricen y faciliten el modo de
+							transporte no motorizado </option>
+						<option
+							value="(22)   Asistir en la implementación y hacer seguimiento a la operación de los Sistemas De Transporte Sostenible No Motorizado (DU Nº 101-2020) en las Municipalidades Provinciales de las ciudades del ámbito de intervención de PROMOVILIDAD. (Durante el 2021 y 2022).">
+							(22)   Asistir en la implementación y hacer seguimiento a la operación de los Sistemas De
+							Transporte Sostenible No Motorizado (DU Nº 101-2020) en las Municipalidades Provinciales de
+							las ciudades del ámbito de intervención de PROMOVILIDAD. (Durante el 2021 y 2022).</option>
+						<option
+							value="(23)   Promover la planificación integral y la ejecución de los Sistemas de Transporte Sostenible No Motorizado como proyectos de inversión, tomando como base la red de ciclovías implementadas para la implementación del DU Nº 101-2020.">
+							(23)   Promover la planificación integral y la ejecución de los Sistemas de Transporte
+							Sostenible No Motorizado como proyectos de inversión, tomando como base la red de ciclovías
+							implementadas para la implementación del DU Nº 101-2020.</option>
+						<option
+							value="(40)   Aprobar e implementar paulatinamente el bus patrón en el Sistema Integrado de Transportes de Lima y Callao">
+							(40)   Aprobar e implementar paulatinamente el bus patrón en el Sistema Integrado de
+							Transportes de Lima y Callao</option>
+						<option
+							value="(41)   Implementar el Programa de chatarreo en Lima y Callao, priorizando los vehículos que compiten con las líneas del Metro, Metropolitano, Corredores Complementarios, Corredores de Integración y Rutas Alimentadoras">
+							(41)   Implementar el Programa de chatarreo en Lima y Callao, priorizando los vehículos que
+							compiten con las líneas del Metro, Metropolitano, Corredores Complementarios, Corredores de
+							Integración y Rutas Alimentadoras</option>
+					</select><br>
+					<label for="medioTransporte">Medio de Transporte:</label><br>
+					<select id="medioTransporte" name="medioTransporte" onchange="seleccionar(this);">
+						<option value="" selected>Todos</option>
+						<option value="Motorizado">Motorizado</option>
+						<option value="No motorizado">No motorizado</option>
+					</select><br>
+					<label for="ubicacion">Ubicaci&oacute;n:</label><br>
+					<select id="ubicacion" name="ubicacion" onchange="seleccionar(this);">
+						<option value="" selected>Todos</option>
+						<option value="Lima y Callao">Lima y Callao</option>
+						<option value="Provincia">Provincia</option>
+					</select><br>
+					<label for="provincia">Provincia:</label><br>
+					<select id="provincia" name="provincia" onchange="seleccionar(this);">
+						<option value="" selected>Todos</option>
+						<option value="Abancay">Abancay</option>
+						<option value="Arequipa">Arequipa</option>
+						<option value="Cajamarca">Cajamarca</option>
+						<option value="Chachapoyas">Chachapoyas</option>
+						<option value="Chiclayo">Chiclayo</option>
+						<option value="Chincha">Chincha</option>
+						<option value="Coronel Portillo">Coronel Portillo</option>
+						<option value="Cusco">Cusco</option>
+						<option value="Huamanga">Huamanga</option>
+						<option value="Huancavelica">Huancavelica</option>
+						<option value="Huancayo">Huancayo</option>
+						<option value="Huaraz">Huaraz</option>
+						<option value="Huaura">Huaura</option>
+						<option value="Huánuco">Huánuco</option>
+						<option value="Ica">Ica</option>
+						<option value="Lima y Callao">Lima y Callao</option>
+						<option value="Mariscal Nieto">Mariscal Nieto</option>
+						<option value="Maynas">Maynas</option>
+						<option value="Moyobamba">Moyobamba</option>
+						<option value="Pasco">Pasco</option>
+						<option value="Piura">Piura</option>
+						<option value="Puno">Puno</option>
+						<option value="San Martín">San Martín</option>
+						<option value="San Román">San Román</option>
+						<option value="Santa">Santa</option>
+						<option value="Sullana">Sullana</option>
+						<option value="Tacna">Tacna</option>
+						<option value="Tambopata">Tambopata</option>
+						<option value="Trujillo">Trujillo</option>
+						<option value="Tumbes">Tumbes</option>
+					</select><br>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+	<div class="row_inner col_align_top tf_box tf_w tf_rel">
+		<div id="chartdiv" style="height: 500px; width:100% ;visibility: hidden;"></div>
+	</div>
+</div>

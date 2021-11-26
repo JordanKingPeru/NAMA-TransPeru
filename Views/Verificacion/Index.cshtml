@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Nama.Models.User
+@if (Model==null) {
+    <div data-css_id="tb_rvnb674" data-lazy="1"
+        class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_og2k674 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div class="module module-text tb_kbdb675  repeat " data-lazy="1">
+                        <div class="tb_text_wrap">
+                            <p>Login</p>
+                        </div>
+                    </div>
+                    <div class="module tf_mw module-divider tb_hp5y675 solid  divider-custom divider-left"
+                        style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;"
+                        data-lazy="1">
+                    </div>
+                    <form action="/verificacion/login" method="post" style="margin-top: 4%;">                                                                
+                        <label for="username">Usuario:</label><br>
+                        <input type="text" id="username" name="username"><br>
+                        <label for="password">Contrase&ntilde;a:</label><br>
+                        <input type="password" id="password" name="password"><br>
+                        <div class="tb_text_wrap themify_builder_content-276 ">
+                            <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                        </div>
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {
+        HttpContextAccessor.HttpContext.Session.SetString("message","");
+    }
+}
+else if (Model.Entidad=="MTC"||Model.Rol=="admin") {
+    <div data-css_id="tb_rvnb674" data-lazy="1"
+        class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_og2k674 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div class="module module-text tb_kbdb675  repeat " data-lazy="1">
+                        <div class="tb_text_wrap">
+                            <p>Descarga de información reportada</p>
+                        </div>
+                    </div>
+                    <div class="module tf_mw module-divider tb_hp5y675 solid  divider-custom divider-left"
+                        style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;"
+                        data-lazy="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-css_id="tb_gmsk981" data-lazy="1"
+        class="themify_builder_row module_row tb_gmsk981 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_fru3982 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div id="tb_cvp3556"
+                        class="module ui module-tab tb_cvp3556 vertical tab-style-default  tb_default_color "
+                        data-lazy="1">
+                                    <form action="/verificacion/descargaavance" method="post">
+                                        <label for="trimestre">Trimestre:</label><br>
+                                        <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                        <label for="entidad">Entidad:</label><br>
+                                        <select id="entidad" name="entidad">
+                                            <option value="">Todos</option>
+                                            <option value="MML">MML</option>
+                                            <option value="ATU">ATU</option>
+                                            <option value="MEF">MEF</option>
+                                            <option value="MVCS">MVCS</option>
+                                            <option value="MINAM">MINAM</option>
+                                            <option value="MINEM">MINEM</option>
+                                            <option value="MTC">MTC</option>
+                                        <select/><br><br>
+                                        <input type="submit" value="Submit" >
+                                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else{
+    <div data-css_id="tb_rvnb674" data-lazy="1"
+        class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_og2k674 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div class="module module-text tb_kbdb675  repeat " data-lazy="1">
+                        <div class="tb_text_wrap">
+                            <p>Lo sentimos, no cuenta con permisos suficientes</p>
+                        </div>
+                    </div>
+                    <div class="module tf_mw module-divider tb_hp5y675 solid  divider-custom divider-left"
+                        style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;"
+                        data-lazy="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TRANSPerú</title>
+	<meta name='robots' content='noindex, nofollow' />
+	<style id="tf_lazy_style">
+		[data-tf-src] {
+			opacity: 0
+		}
+
+		.tf_svg_lazy {
+			transition: filter .3s linear !important;
+			filter: blur(25px);
+			opacity: 1;
+			transform: translateZ(0)
+		}
+
+		.tf_svg_lazy_loaded {
+			filter: blur(0)
+		}
+
+		.module[data-lazy],
+		.module[data-lazy] .ui,
+		.module_row[data-lazy]:not(.tb_first),
+		.module_row[data-lazy]:not(.tb_first)>.row_inner,
+		.module_row:not(.tb_first) .module_column[data-lazy],
+		.module_subrow[data-lazy]>.subrow_inner {
+			background-image: none !important
+		}
+	</style>
+	<noscript>
+		<style>
+			[data-tf-src] {
+				display: none !important
+			}
+
+			.tf_svg_lazy {
+				filter: none !important;
+				opacity: 1 !important
+			}
+		</style>
+	</noscript>
+	<style id="tf_lazy_common">
+		body:not(.page-loaded),
+		body:not(.page-loaded) #header,
+		body:not(.page-loaded) a,
+		body:not(.page-loaded) img,
+		body:not(.page-loaded) figure,
+		body:not(.page-loaded) div,
+		body:not(.page-loaded) i,
+		body:not(.page-loaded) li,
+		body:not(.page-loaded) span,
+		body:not(.page-loaded) ul {
+			animation: none !important;
+			transition: none !important
+		}
+
+		body:not(.page-loaded) #main-nav li .sub-menu {
+			display: none
+		}
+
+		img {
+			max-width: 100%;
+			height: auto
+		}
+
+		.tf_fa {
+			display: inline-block;
+			width: 1em;
+			height: 1em;
+			stroke-width: 0;
+			stroke: currentColor;
+			overflow: visible;
+			fill: currentColor;
+			pointer-events: none;
+			vertical-align: middle
+		}
+
+		#tf_svg symbol {
+			overflow: visible
+		}
+
+		.tf_lazy {
+			position: relative;
+			visibility: visible;
+			contain: paint;
+			display: block;
+			opacity: .3
+		}
+
+		.wow .tf_lazy {
+			visibility: hidden;
+			opacity: 1;
+			position: static;
+			display: inline
+		}
+
+		.tf_audio_lazy audio {
+			visibility: hidden;
+			height: 0
+		}
+
+		.mejs-container {
+			visibility: visible
+		}
+
+		.tf_iframe_lazy {
+			transition: opacity .3s ease-in-out;
+			min-height: 10px
+		}
+
+		.tf_carousel .swiper-wrapper {
+			display: flex
+		}
+
+		.tf_carousel .swiper-slide {
+			flex-shrink: 0;
+			opacity: 0
+		}
+
+		.tf_carousel .tf_lazy {
+			contain: none
+		}
+
+		.swiper-wrapper>br,
+		.tf_lazy.swiper-wrapper .tf_lazy:after,
+		.tf_lazy.swiper-wrapper .tf_lazy:before {
+			display: none
+		}
+
+		.tf_lazy:after,
+		.tf_lazy:before {
+			content: '';
+			display: inline-block;
+			position: absolute;
+			width: 10px !important;
+			height: 10px !important;
+			margin: 0 3px;
+			top: 50% !important;
+			right: 50% !important;
+			left: auto !important;
+			border-radius: 100%;
+			background-color: currentColor;
+			visibility: visible;
+			animation: tf-hrz-loader infinite .75s cubic-bezier(.2, .68, .18, 1.08)
+		}
+
+		.tf_lazy:after {
+			width: 6px !important;
+			height: 6px !important;
+			right: auto !important;
+			left: 50% !important;
+			margin-top: 3px;
+			animation-delay: -.4s
+		}
+
+		@@keyframes tf-hrz-loader {
+			0% {
+				transform: scale(1);
+				opacity: 1
+			}
+
+			50% {
+				transform: scale(.1);
+				opacity: .6
+			}
+
+			100% {
+				transform: scale(1);
+				opacity: 1
+			}
+		}
+
+		.tf_lazy_lightbox {
+			position: fixed;
+			background: rgba(11, 11, 11, .8);
+			color: #ccc;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 999
+		}
+
+		.tf_lazy_lightbox .tf_lazy:after,
+		.tf_lazy_lightbox .tf_lazy:before {
+			background: #fff
+		}
+	</style>
+	<noscript>
+		<style>
+			body:not(.page-loaded) #main-nav li .sub-menu {
+				display: block
+			}
+		</style>
+	</noscript>
+	<link type="text/css" id="themify_concate-css" rel="stylesheet"
+		href="/css/themify-concate-8522a7d4d821557b7d3d52670bbd7255.min.css" />
+	<link type="text/css" id="tf-mobile-mobile-menu-css" rel="stylesheet" href="/css/mobile-menu.min.css"
+		media="screen and (max-width:900px)" />
+	<link rel='stylesheet' id='contact-form-7-css' href='/css/styles.css' media='all' />
+	<script src='/js/jquery.min.js' id='jquery-core-js'></script>
+	<script src='/js/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+
+	<style>
+		@@keyframes themifyAnimatedBG {
+			0% {
+				background-color: #33baab
+			}
+
+			100% {
+				background-color: #e33b9e
+			}
+
+			50% {
+				background-color: #4961d7
+			}
+
+			33.3% {
+				background-color: #2ea85c
+			}
+
+			25% {
+				background-color: #2bb8ed
+			}
+
+			20% {
+				background-color: #dd5135
+			}
+		}
+
+		.page-loaded .module_row.animated-bg {
+			animation: themifyAnimatedBG 30000ms infinite alternate
+		}
+	</style>
+	<style>
+		.recentcomments a {
+			display: inline !important;
+			padding: 0 !important;
+			margin: 0 !important
+		}
+	</style>
+	<style id="tb_inline_styles">
+		.tb_animation_on {
+			overflow-x: hidden
+		}
+
+		.themify_builder .wow {
+			visibility: hidden;
+			animation-fill-mode: both
+		}
+
+		.themify_builder .tf_lax_done {
+			transition-duration: .8s;
+			transition-timing-function: cubic-bezier(.165, .84, .44, 1)
+		}
+
+		.wow.tf_lax_done {
+			animation-fill-mode: backwards
+		}
+
+		.sticky-wrapper.tb_sticky_scroll_active [data-sticky-active] {
+			z-index: 1
+		}
+
+		.sticky-wrapper.tb_sticky_scroll_active [data-sticky-active] .hide-on-stick {
+			display: none
+		}
+
+		@@media screen and (min-width:1025px) {
+			.hide-desktop {
+				width: 0 !important;
+				height: 0 !important;
+				padding: 0 !important;
+				visibility: hidden !important;
+				margin: 0 !important;
+				display: table-column !important
+			}
+		}
+
+		@@media screen and (min-width:769px) and (max-width:1024px) {
+			.hide-tablet_landscape {
+				width: 0 !important;
+				height: 0 !important;
+				padding: 0 !important;
+				visibility: hidden !important;
+				margin: 0 !important;
+				display: table-column !important
+			}
+		}
+
+		@@media screen and (min-width:601px) and (max-width:768px) {
+			.hide-tablet {
+				width: 0 !important;
+				height: 0 !important;
+				padding: 0 !important;
+				visibility: hidden !important;
+				margin: 0 !important;
+				display: table-column !important
+			}
+		}
+
+		@@media screen and (max-width:600px) {
+			.hide-mobile {
+				width: 0 !important;
+				height: 0 !important;
+				padding: 0 !important;
+				visibility: hidden !important;
+				margin: 0 !important;
+				display: table-column !important
+			}
+		}
+	</style><noscript>
+		<style>
+			.themify_builder .wow,
+			.wow .tf_lazy {
+				visibility: visible !important
+			}
+		</style>
+	</noscript>
+	<link rel="icon" href="/assets/images/cropped-FONDO-DE-ICONO-lineas-delgadas-32x32.png" sizes="32x32" />
+
+</head>
+
+<body data-rsssl=1
+	class="home page-template-default page page-id-276 skin-default full_width sidebar-none tb_animation_on ready-view header-none footer-block search-off filter-hover-none filter-featured-only sidemenu-active">
+	<div id="pagewrap" class="tf_box hfeed site">
+
+
+		<div id="body" class="tf_box tf_clear tf_mw clearfix">
+
+			<!-- layout-container -->
+			<div id="layout" class="pagewidth tf_box clearfix">
+				<!-- content -->
+				<main id="content" class="tf_box clearfix">
+					<div id="page-276" class="type-page" itemprop="articleBody">
+						<div class="page-content entry-content">
+							<div id="themify_builder_content-276" data-postid="276"
+								class="themify_builder_content themify_builder_content-276 themify_builder tf_clear">
+								<!-- module_row -->
+								<div data-css_id="tb_etpm729" data-lazy="1"
+									class="themify_builder_row module_row repeat fullwidth_row_container tb_etpm729 tb_first clearfix">
+									<div class="row_inner col_align_top gutter-none tf_box tf_w tf_rel">
+										<div data-lazy="1"
+											class="module_column tb-column col4-2 first tb_et4w730 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module image -->
+												<div class="module module-image tb_azeb556   image-top tf_mw"
+													data-lazy="1">
+													<div class="image-wrap tf_rel tf_mw">
+														<img data-tf-not-load="1"
+															src="/assets/images/img/logo-gobpe.png" width="350"
+															height="50" class="wp-post-image wp-image-3848"
+															title="logo-gob.pe" alt="logo-gob.pe"
+															sizes="(max-width: 350px) 100vw, 350px"
+															srcset="/assets/images/img/logo-gobpe.png 350w, /assets/images/img/logo-gobpe.png 300w, /assets/images/img/logo-gobpe.png 1024w, /assets/images/img/logo-gobpe.pngg 768w, /assets/images/img/logo-gobpe.png 1328w" />
+													</div>
+													<!-- /image-wrap -->
+
+
+												</div>
+												<!-- /module image -->
+											</div>
+										</div>
+										<div data-lazy="1"
+											class="module_column tb-column col4-2 last tb_6gak180 tf_box">
+										</div>
+									</div>
+									<!-- /row_inner -->
+								</div>
+								<!-- /module_row -->
+								<!-- module_row -->
+								<div data-css_id="tb_5uho274" data-lazy="1"
+									class="themify_builder_row module_row repeat fullwidth_row_container tb_5uho274 clearfix">
+									<div
+										class="row_inner col_align_middle gutter-none col_auto_height tf_box tf_w tf_rel">
+										<div data-lazy="1" style="width: 5%"
+											class="module_column tb-column col4-2 first tb_zx0i275 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module icon -->
+												<div class="module module-icon tb_rbng276  normal circle icon_vertical tf_textl"
+													data-lazy="1">
+													<div class="module-icon">
+														<div class="module-icon-item">
+															<a href="https://www.gob.pe/">
+																<i class="ui tf_vmiddle tf_textc tf_box transparent"><svg
+																		class="tf_fa tf-fas-home">
+																		<use href="#tf-fas-home"></use>
+																	</svg></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<!-- /module icon -->
+											</div>
+										</div>
+										<div data-lazy="1" style="width: 80%"
+											class="module_column tb-column col4-2 last tb_pqhu277 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module text -->
+												<div class="module module-text tb_0wrh277   " data-lazy="1">
+													<div class="tb_text_wrap">
+														<h6>&lt;   <span style="color: #808080;"><a
+																	style="color: #808080;"
+																	href="https://www.gob.pe/estado"> El
+																	Estado</a> </span>   &lt;    <span
+																style="color: #808080;"> <a style="color: #808080;"
+																	href="https://www.gob.pe/mtc">MTC</a> </span>  
+															&lt;   <span style="color: #808080;"> <a
+																	style="color: #808080;" href="/">NAMA TRANS
+																	Perú</a>   
+																&lt;    <a style="color: #808080;"
+																	href="/home/menu">MRV</a></span>
+														</h6>
+													</div>
+												</div>
+												<!-- /module text -->
+											</div>
+										</div>
+
+										<div data-lazy="1" style="width: 15%"
+											class="module_column tb-column col4-2 first tb_zx0i275 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module icon -->
+												<div class="module module-icon tb_rbng276  normal circle icon_vertical tf_textl"
+													data-lazy="1">
+													<div class="module-icon">
+														<div class="module-icon-item">
+															<a href="https://www.gob.pe/">
+																<i class="ui tf_vmiddle tf_textc tf_box transparent"><svg
+																		class="tf_fa tf-fas-home" width="350" height="50">
+																		<use href="/assets/images/img/logo_mtc.svg"></use>
+																	</svg></i>
+															</a>
+														</div>
+													</div>
+												</div>
+												<!-- /module icon -->
+											</div>
+										</div>
+									</div>
+									<!-- /row_inner -->
+								</div>
+								@RenderBody()
+
+								<!-- module_row -->
+								<div data-css_id="tb_66t9673" id="contacto" data-lazy="1"
+									class="themify_builder_row module_row repeat fullwidth_row_container tb_66t9673 clearfix"
+									style="background-color: rgba(230, 230, 230, 1);">
+									<div class="row_inner col_align_top tf_box tf_w tf_rel">
+										<div data-lazy="1"
+											class="module_column tb-column col-full first tb_q0ws674 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module text -->
+												<div class="module module-text tb_r4hb675  repeat " data-lazy="1">
+													<div class="tb_text_wrap">
+														<p>Contacto</p>
+													</div>
+												</div>
+												<!-- /module text -->
+												<!-- module divider -->
+												<div class="module tf_mw module-divider tb_2q8q675 solid  divider-custom divider-left"
+													style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;"
+													data-lazy="1">
+												</div>
+												<!-- /module divider -->
+											</div>
+										</div>
+									</div>
+									<!-- /row_inner -->
+								</div>
+								<!-- /module_row -->
+								<!-- module_row -->
+								<div data-css_id="tb_zc1z168" data-lazy="1"
+									class="themify_builder_row module_row repeat fullwidth_row_container tb_zc1z168 clearfix"
+									style="background-color: rgba(230, 230, 230, 1);">
+									<div class="row_inner col_align_top gutter-none tf_box tf_w tf_rel">
+										<div data-lazy="1"
+											class="module_column tb-column col4-1 first tb_ore4169 repeat tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module icon -->
+												<div class="module module-icon tb_12js123  large circle icon_horizontal tf_textc"
+													data-lazy="1">
+													<div class="module-icon">
+														<div class="module-icon-item tf_inline_b">
+															<i class="ui tf_vmiddle tf_textc tf_box red"><svg
+																	class="tf_fa tf-fas-home">
+																	<use href="#tf-fas-home"></use>
+																</svg></i>
+														</div>
+													</div>
+												</div>
+												<!-- /module icon -->
+												<!-- module text -->
+												<div class="module module-text tb_juv3480   " data-lazy="1">
+													<div class="tb_text_wrap">
+														<p style="color: rgb(0 0 0);">Jirón Zorritos 1203, Cercado de Lima 15082</p>
+													</div>
+												</div>
+												<!-- /module text -->
+											</div>
+										</div>
+										<div data-lazy="1"
+											class="module_column tb-column col4-1 second tb_b014170 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module icon -->
+												<div class="module module-icon tb_vkhk263  large circle icon_horizontal tf_textc"
+													data-lazy="1">
+													<div class="module-icon">
+														<div class="module-icon-item tf_inline_b">
+															<i class="ui tf_vmiddle tf_textc tf_box blue"><svg
+																	class="tf_fa tf-ti-mobile">
+																	<use href="#tf-ti-mobile"></use>
+																</svg></i>
+														</div>
+													</div>
+												</div>
+												<!-- /module icon -->
+												<!-- module text -->
+												<div class="module module-text tb_o0od693   " data-lazy="1">
+													<div class="tb_text_wrap">
+														<p style="color: rgb(0 0 0);">(01) 6157800</p>
+													</div>
+												</div>
+												<!-- /module text -->
+											</div>
+										</div>
+										<div data-lazy="1"
+											class="module_column tb-column col4-1 third tb_q0fw171 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module icon -->
+												<div class="module module-icon tb_p1r0930  large circle icon_horizontal tf_textc"
+													data-lazy="1">
+													<div class="module-icon">
+														<div class="module-icon-item tf_inline_b">
+															<i class="ui tf_vmiddle tf_textc tf_box blue"><svg
+																	class="tf_fa tf-ti-email">
+																	<use href="#tf-ti-email"></use>
+																</svg></i>
+														</div>
+													</div>
+												</div>
+												<!-- /module icon -->
+												<!-- module text -->
+												<!-- /module text -->
+												<!-- module text -->
+												<div class="module module-text tb_16xv152   " data-lazy="1">
+													<div class="tb_text_wrap">
+														<p style="color: rgb(0 0 0);">namatransperu@mtc.gob.pe</p>
+													</div>
+												</div>
+												<!-- /module text -->
+											</div>
+										</div>
+										<div data-lazy="1"
+											class="module_column tb-column col4-1 last tb_2cxi574 tf_box">
+											<div class="tb-column-inner tf_box tf_w">
+												<!-- module icon -->
+												<div class="module module-icon tb_x9l699  large circle icon_horizontal tf_textc"
+													data-lazy="1">
+													<div class="module-icon">
+														<div class="module-icon-item tf_inline_b">
+															<i class="ui tf_vmiddle tf_textc tf_box blue"><svg
+																	class="tf_fa tf-ti-world">
+																	<use href="#tf-ti-world"></use>
+																</svg></i>
+														</div>
+													</div>
+												</div>
+												<!-- /module icon -->
+												<!-- module text -->
+												<div class="module module-text tb_zzzg823  repeat " data-lazy="1">
+													<div class="tb_text_wrap">
+														<p style="color: rgb(0 0 0);" >
+															http://www.mtc.gob.pe/
+														</p>
+													</div>
+												</div>
+												<!-- /module text -->
+											</div>
+										</div>
+									</div>
+									<!-- /row_inner -->
+								</div>
+								<!-- /module_row -->
+							</div>
+
+							<!-- /comments -->
+						</div>
+						<!-- /.post-content -->
+					</div>
+					<!-- /.type-page -->
+				</main>
+				<!-- /content -->
+			</div>
+			<!-- /layout-container -->
+		</div><!-- /body -->
+		<div id="footerwrap" class="tf_box tf_clear tf_textc">
+			<footer id="footer" class="tf_box pagewidth tf_scrollbar tf_rel clearfix" itemscope="itemscope"
+				itemtype="https://schema.org/WPFooter">
+
+				<div class="main-col first clearfix">
+					<div class="footer-left-wrap first">
+
+					</div>
+
+					<div class="footer-right-wrap">
+						<div class="footer-nav-wrap">
+						</div>
+						<!-- /.footer-nav-wrap -->
+
+						<div class="footer-text tf_clear clearfix">
+							<div class="footer-text-inner">
+								<div class="one">&copy; <a href="/">TRANSPerú</a> 2021</div>
+							</div>
+						</div>
+						<!-- /.footer-text -->
+					</div>
+				</div>
+
+				<div class="section-col clearfix">
+					<div class="footer-widgets-wrap">
+
+						<div class="footer-widgets clearfix">
+							<div class="col3-1 first tf_box tf_float">
+								<div id="text-2" class="widget widget_text">
+									<div class="textwidget">
+										<p><a
+												href="https://www.nama-facility.org/projects/?tx_news_pi1[overwriteDemand][categories]=10,,&amp;no_cache=1">NAMA
+												Facility</a></p>
+										<p>&nbsp;</p>
+									</div>
+								</div>
+							</div>
+							<div class="col3-1 tf_box tf_float">
+								<div id="themify-social-links-2" class="widget themify-social-links">
+									<ul class="social-links horizontal">
+										<li class="social-link-item twitter font-icon icon-medium">
+											<a href="https://twitter.com/MTC_GobPeru?s=08" aria-label="twitter"
+												target="_blank" rel="noopener"><i><svg class="tf_fa tf-fab-twitter">
+														<use href="#tf-fab-twitter"></use>
+													</svg></i> </a>
+										</li>
+										<!-- /themify-link-item -->
+										<li class="social-link-item facebook font-icon icon-medium">
+											<a href="https://www.facebook.com/MTC.Peru" aria-label="facebook"
+												target="_blank" rel="noopener"><i><svg class="tf_fa tf-fab-facebook">
+														<use href="#tf-fab-facebook"></use>
+													</svg></i> </a>
+										</li>
+										<!-- /themify-link-item -->
+										<li class="social-link-item youtube font-icon icon-medium">
+											<a href="https://www.youtube.com/user/MTCPERUOFICIAL" aria-label="youtube"
+												target="_blank" rel="noopener"><i><svg class="tf_fa tf-fab-youtube">
+														<use href="#tf-fab-youtube"></use>
+													</svg></i> </a>
+										</li>
+										<!-- /themify-link-item -->
+										<li class="social-link-item instagram font-icon icon-medium">
+											<a href="https://www.instagram.com/mtc.oficial/" aria-label="instagram"
+												target="_blank" rel="noopener"><i><svg class="tf_fa tf-fab-instagram">
+														<use href="#tf-fab-instagram"></use>
+													</svg></i> </a>
+										</li>
+										<!-- /themify-link-item -->
+										<li class="social-link-item tik-tok font-icon icon-medium">
+											<a href="https://www.tiktok.com/@@mtc_gobperu?lang=es" aria-label="tik-tok"
+												target="_blank" rel="noopener"><i><svg class="tf_fa tf-ti-music">
+														<use href="#tf-ti-music"></use>
+													</svg></i> </a>
+										</li>
+										<!-- /themify-link-item -->
+									</ul>
+								</div>
+							</div>
+							<div class="col3-1 tf_box tf_float">
+								<div id="media_image-2" class="widget widget_media_image"><a
+										href="https://bicentenario.gob.pe/"><img decoding="async" loading="lazy"
+											data-lazy="1" width="250" height="99" src="/assets/images/logo-bcn-foo.png"
+											class="tf_svg_lazy image wp-image-3714  attachment-full size-full" alt=""
+											style="max-width: 100%; height: auto;" /></a></div>
+							</div>
+						</div>
+						<!-- /.footer-widgets -->
+
+						<!-- /footer-widgets -->
+					</div>
+				</div>
+
+			</footer><!-- /#footer -->
+
+		</div><!-- /#footerwrap -->
+	</div><!-- /#pagewrap -->
+	<!-- SCHEMA BEGIN -->
+	<script
+		type="application/ld+json">[{"@@context":"https:\/\/schema.org","@@type":"WebSite","url":"\/","potentialAction":{"@@type":"SearchAction","target":"\/?&s={search_term_string}","query-input":"required name=search_term_string"}},{"@@context":"https:\/\/schema.org","@@type":"WebPage","mainEntityOfPage":{"@@type":"WebPage","@@id":"\/"},"headline":"00.inicio","datePublished":"2020-12-04T17:07:38-05:00","dateModified":"2020-12-04T17:07:38-05:00","description":""}]</script>
+	<!-- /SCHEMA END -->
+
+	<script type="text/template" id="tf_vars">
+		var themifyScript = {"headerType":"header-none","sticky_header":"","pageLoaderEffect":"","infiniteEnable":"0"};
+		var tbLocalScript = {"builder_url":"\/themify-builder",
+		                     "css_module_url":"\/themify-builder\/css\/modules\/",
+							 "js_module_url":"\/themify-builder\/js\/modules\/",
+							 "js_modules":{"fwr":"\/themify-builder\/js\/modules\/fullwidthRows.min.js",
+							               "bgs":"\/themify-builder\/js\/modules\/backgroundSlider.min.js",
+										   "fwv":"\/themify-builder\/js\/modules\/fullwidthvideo.min.js",
+										   "feature":"\/themify-builder\/js\/modules\/feature.min.js",
+										   "parallax":"\/themify-builder\/js\/modules\/parallax.min.js",
+										   "bgzs":"\/themify-builder\/js\/modules\/bgzoom_scroll.min.js",
+										   "bgzoom":"\/themify-builder\/js\/modules\/bgzoom.min.js",
+										   "gallery":"\/themify-builder\/js\/modules\/gallery.min.js",
+										   "menu":"\/themify-builder\/js\/modules\/menu.min.js",
+										   "read":"\/themify-builder\/js\/modules\/readMore.min.js",
+										   "sticky":"\/themify-builder\/js\/modules\/sticky.min.js",
+										   "alert":"\/themify-builder\/js\/modules\/alert.min.js",
+										   "tab":"\/themify-builder\/js\/modules\/tab.min.js",
+										   "accordion":"\/themify-builder\/js\/modules\/accordion.min.js",
+										   "oc":"\/themify-builder\/js\/modules\/overlay-content.min.js",
+										   "video":"\/themify-builder\/js\/modules\/video.min.js",
+										   "sh":"\/themify-builder\/js\/themify.scroll-highlight.min.js"},"breakpoints":{"tablet_landscape":[769,1024],"tablet":[601,768],"mobile":600},"fullwidth_support":"1","addons":[]};
+		var themify_vars  = {"version":"5.0.9",
+		                     "url":"\/themify-ultra\/themify",
+							 "wp":"5.7.3",
+							 "ajax_url":"https:\/\/34.228.131.20\/wp-admin\/admin-ajax.php",
+							 "includesURL":"https:\/\/34.228.131.20\/wp-includes\/",
+							 "emailSub":"Check this out!",
+							 "lightbox":[],"s_v":"5.3.6","a_v":"3.6.2","i_v":"4.1.4",
+							 "js_modules":{"fxh":"\/themify-ultra\/themify\/js\/modules\/fixedheader.min.js",
+							 			   "lb":"\/themify-ultra\/themify\/js\/lightbox.min.js",
+											"gal":"\/themify-ultra\/themify\/js\/themify.gallery.min.js",
+											"sw":"\/themify-ultra\/themify\/js\/modules\/swiper\/swiper.min.js",
+											"tc":"\/themify-ultra\/themify\/js\/modules\/themify.carousel.min.js",
+											"map":"\/themify-ultra\/themify\/js\/modules\/map.min.js",
+											"img":"\/themify-ultra\/themify\/js\/modules\/jquery.imagesloaded.min.js",
+											"at":"\/themify-ultra\/themify\/js\/modules\/autoTiles.min.js",
+											"iso":"\/themify-ultra\/themify\/js\/modules\/isotop.min.js",
+											"inf":"\/themify-ultra\/themify\/js\/modules\/infinite.min.js",
+											"lax":"\/themify-ultra\/themify\/js\/modules\/lax.min.js",
+											"video":"\/themify-ultra\/themify\/js\/modules\/video-player.min.js",
+											"audio":"\/themify-ultra\/themify\/js\/modules\/audio-player.min.js",
+											"side":"\/themify-ultra\/themify\/js\/modules\/themify.sidemenu.min.js",
+											"edge":"\/themify-ultra\/themify\/js\/modules\/edge.Menu.min.js",
+											"wow":"\/themify-ultra\/themify\/js\/modules\/tf_wow.min.js",
+											"share":"\/themify-ultra\/themify\/js\/modules\/sharer.min.js",
+											"mega":"\/themify-ultra\/themify\/megamenu\/js\/themify.mega-menu.min.js",
+											"drop":"\/themify-ultra\/themify\/js\/modules\/themify.dropdown.min.js",
+											"wc":"\/themify-ultra\/themify\/js\/modules\/wc.min.js"},
+							"css_modules":{"sw":"\/themify-ultra\/themify\/css\/swiper\/swiper.min.css",
+										   "an":"\/themify-ultra\/themify\/css\/animate.min.css",
+										   "video":"\/themify-ultra\/themify\/css\/modules\/video.min.css",
+										   "audio":"\/themify-ultra\/themify\/css\/modules\/audio.min.css",
+										   "drop":"\/themify-ultra\/themify\/css\/modules\/dropdown.min.css",
+										   "lb":"\/themify-ultra\/themify\/css\/lightbox.min.css",
+										   "mega":"\/themify-ultra\/themify\/megamenu\/css\/megamenu.min.css"},
+							"is_min":"1",
+							"wp_embed":"https:\/\/34.228.131.20\/wp-includes\/js\/wp-embed.min.js",
+							"theme_js":"\/themify-ultra\/js\/themify.script.min.js",
+							"theme_v":"5.1.2",
+							"theme_url":"\/themify-ultra",
+							"menu_point":"900",
+							"media":{
+								"css":{
+									"wp-mediaelement":"https:\/\/34.228.131.20\/wp-includes\/js\/mediaelement\/mediaelementplayer-legacy.min.css?ver=5.7.3",
+									"mediaelement":"https:\/\/34.228.131.20\/wp-includes\/js\/mediaelement\/wp-mediaelement.css?ver=5.7.3"
+								},
+								"_wpmejsSettings":"var _wpmejsSettings = {\"pluginPath\":\"\\\/wp-includes\\\/js\\\/mediaelement\\\/\",\"classPrefix\":\"mejs-\",\"stretching\":\"responsive\"};",
+								"js":{"mediaelement-core":{"src":"https:\/\/34.228.131.20\/wp-includes\/js\/mediaelement\/mediaelement-and-player.min.js","v":"4.2.16","extra":{"before":[false,"var mejsL10n = {\"language\":\"es\",\"strings\":{\"mejs.download-file\":\"Descargar archivo\",\"mejs.install-flash\":\"Est\\u00e1s usando un navegador que no tiene Flash activo o instalado. Por favor, activa el componente del reproductor Flash o descarga la \\u00faltima versi\\u00f3n desde https:\\\/\\\/get.adobe.com\\\/flashplayer\\\/\",\"mejs.fullscreen\":\"Pantalla completa\",\"mejs.play\":\"Reproducir\",\"mejs.pause\":\"Pausa\",\"mejs.time-slider\":\"Control de tiempo\",\"mejs.time-help-text\":\"Usa las teclas de direcci\\u00f3n izquierda\\\/derecha para avanzar un segundo y las flechas arriba\\\/abajo para avanzar diez segundos.\",\"mejs.live-broadcast\":\"Transmisi\\u00f3n en vivo\",\"mejs.volume-help-text\":\"Utiliza las teclas de flecha arriba\\\/abajo para aumentar o disminuir el volumen.\",\"mejs.unmute\":\"Activar el sonido\",\"mejs.mute\":\"Silenciar\",\"mejs.volume-slider\":\"Control de volumen\",\"mejs.video-player\":\"Reproductor de v\\u00eddeo\",\"mejs.audio-player\":\"Reproductor de audio\",\"mejs.captions-subtitles\":\"Pies de foto \\\/ Subt\\u00edtulos\",\"mejs.captions-chapters\":\"Cap\\u00edtulos\",\"mejs.none\":\"Ninguna\",\"mejs.afrikaans\":\"Afrik\\u00e1ans\",\"mejs.albanian\":\"Albano\",\"mejs.arabic\":\"\\u00c1rabe\",\"mejs.belarusian\":\"Bielorruso\",\"mejs.bulgarian\":\"B\\u00falgaro\",\"mejs.catalan\":\"Catal\\u00e1n\",\"mejs.chinese\":\"Chino\",\"mejs.chinese-simplified\":\"Chino (Simplificado)\",\"mejs.chinese-traditional\":\"Chino (Tradicional)\",\"mejs.croatian\":\"Croata\",\"mejs.czech\":\"Checo\",\"mejs.danish\":\"Dan\\u00e9s\",\"mejs.dutch\":\"Neerland\\u00e9s\",\"mejs.english\":\"Ingl\\u00e9s\",\"mejs.estonian\":\"Estonio\",\"mejs.filipino\":\"Filipino\",\"mejs.finnish\":\"Fin\\u00e9s\",\"mejs.french\":\"Franc\\u00e9s\",\"mejs.galician\":\"Gallego\",\"mejs.german\":\"Alem\\u00e1n\",\"mejs.greek\":\"Griego\",\"mejs.haitian-creole\":\"Creole haitiano\",\"mejs.hebrew\":\"Hebreo\",\"mejs.hindi\":\"Indio\",\"mejs.hungarian\":\"H\\u00fangaro\",\"mejs.icelandic\":\"Island\\u00e9s\",\"mejs.indonesian\":\"Indonesio\",\"mejs.irish\":\"Irland\\u00e9s\",\"mejs.italian\":\"Italiano\",\"mejs.japanese\":\"Japon\\u00e9s\",\"mejs.korean\":\"Coreano\",\"mejs.latvian\":\"Let\\u00f3n\",\"mejs.lithuanian\":\"Lituano\",\"mejs.macedonian\":\"Macedonio\",\"mejs.malay\":\"Malayo\",\"mejs.maltese\":\"Malt\\u00e9s\",\"mejs.norwegian\":\"Noruego\",\"mejs.persian\":\"Persa\",\"mejs.polish\":\"Polaco\",\"mejs.portuguese\":\"Portugu\\u00e9s\",\"mejs.romanian\":\"Rumano\",\"mejs.russian\":\"Ruso\",\"mejs.serbian\":\"Serbio\",\"mejs.slovak\":\"Eslovaco\",\"mejs.slovenian\":\"Esloveno\",\"mejs.spanish\":\"Espa\\u00f1ol\",\"mejs.swahili\":\"Swahili\",\"mejs.swedish\":\"Sueco\",\"mejs.tagalog\":\"Tagalo\",\"mejs.thai\":\"Tailand\\u00e9s\",\"mejs.turkish\":\"Turco\",\"mejs.ukrainian\":\"Ukraniano\",\"mejs.vietnamese\":\"Vietnamita\",\"mejs.welsh\":\"Gal\\u00e9s\",\"mejs.yiddish\":\"Yiddish\"}};"]}},"mediaelement-migrate":{"src":"https:\/\/34.228.131.20\/wp-includes\/js\/mediaelement\/mediaelement-migrate.min.js","v":false,"extra":""},"wp-mediaelement":{"src":"https:\/\/34.228.131.20\/wp-includes\/js\/mediaelement\/wp-mediaelement.min.js","v":false,"extra":""}}},"done":{"tb_image":true,"tb_image_top":true,"tb_icon":true,"tb_text":true,"tb_cover":true,"tb_buttons":true,"tb_rounded":true,"tb_red":true,"tb_menu":true,"tb_menu_fullwidth":true,"tb_tb_default_color":true,"tb_image_center":true,"tb_divider":true,"tb_blue":true,"tb_accordion":true,"tb_tab":true,"tb_tab_vertical":true,"tb_accordion_separate":true,"tb_accordion_transparent":true,"tb_style":true}};			
+	</script>
+	<script nomodule defer src="/themify-ultra/themify/js/modules/fallback.min.js"></script>
+	<script defer="defer" src='/themify-ultra/themify/js//main.min.js' id='themify-main-script-js'></script>
+	<!--
+	<script src='https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.4.4' id='wp-polyfill-js'></script>
+	<script id='wp-polyfill-js-after'>('fetch' in window) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?ver=3.0.0"></scr' + 'ipt>'); (document.contains) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?ver=3.42.0"></scr' + 'ipt>'); (window.DOMRect) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-dom-rect.min.js?ver=3.42.0"></scr' + 'ipt>'); (window.URL && window.URL.prototype && window.URLSearchParams) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-url.min.js?ver=3.6.4"></scr' + 'ipt>'); (window.FormData && window.FormData.prototype.keys) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?ver=3.0.12"></scr' + 'ipt>'); (Element.prototype.matches && Element.prototype.closest) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?ver=2.0.2"></scr' + 'ipt>'); ('objectFit' in document.documentElement.style) || document.write('<script src="https://34.228.131.20/wp-includes/js/dist/vendor/wp-polyfill-object-fit.min.js?ver=2.3.4"></scr' + 'ipt>');</script>
+	<script id='contact-form-7-js-extra'>var wpcf7 = { "api": { "root": "https:\/\/34.228.131.20\/wp-json\/", "namespace": "contact-form-7\/v1" } };</script>
+	<script defer="defer" src='https://34.228.131.20/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.4.1' id='contact-form-7-js'></script>
+	-->
+	<svg id="tf_svg" style="display:none">
+		<defs>
+			<symbol id="tf-fas-home" viewBox="0 0 36 32">
+				<path
+					d="M17.5 9.25q.25-.125.5-.125t.5.125l11.5 9.5V29q0 .438-.281.719T29 30h-7q-.438 0-.719-.313T21 28.999v-6q0-.25-.125-.5t-.375-.375-.5-.125h-4q-.438 0-.719.281t-.281.719v6q0 .375-.281.688T14 30H7q-.438 0-.719-.281T6 29V18.75zm18.25 6.438q.25.25.25.625 0 .25-.188.438l-1.563 1.938q-.25.313-.563.313t-.5-.188L18.498 6.689q-.25-.125-.5-.125t-.5.125L2.81 18.814q-.188.188-.438.188-.375 0-.625-.313L.184 16.751q-.188-.188-.188-.438 0-.375.25-.625l15.813-13Q16.934 2 17.997 2t1.875.688l5.625 4.625V2.75q0-.313.219-.531T26.247 2h3.5q.313 0 .531.219t.219.531v8.688z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-arrow-right" viewBox="0 0 32 32">
+				<path
+					d="M29.563 15.938L15.75 2.125l-1.375 1.313 11.563 11.563H1.875v1.875h24.063L14.375 28.439l1.375 1.375z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-mobile" viewBox="0 0 32 32">
+				<path
+					d="M23.5 0c1.563 0 2.875 1.25 2.875 2.813v26.375c0 1.563-1.313 2.813-2.875 2.813h-15c-1.563 0-2.875-1.25-2.875-2.813V2.813C5.625 1.25 6.938 0 8.5 0h15zm-15 1.875c-.563 0-1 .438-1 .938v2.813h17V2.813c0-.5-.438-.938-1-.938h-15zm16 5.625h-17v15.063h17V7.5zm-1 22.625c.563 0 1-.438 1-.938v-4.688h-17v4.688c0 .5.438.938 1 .938h15zm-6.562-2.812c0-.563-.438-.938-.938-.938s-.938.375-.938.938c0 .5.438.938.938.938s.938-.438.938-.938z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-email" viewBox="0 0 32 32">
+				<path
+					d="M0 3.75h32v24.5H0V3.75zM16 18.5L29 5.625H3zM10.813 16L1.875 7.187v17.625zm1.375 1.375l-9.125 9h25.688l-9-8.938-3.75 3.688zm8.875-1.25L30.126 25V7.187z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-world" viewBox="0 0 32 32">
+				<path
+					d="M16 0c8.875 0 16 7.188 16 16s-7.125 16-16 16C7.187 32 0 24.812 0 16S7.188 0 16 0zM1.938 16.938c.125 2 .688 3.938 1.625 5.625h4.875c-.563-1.813-.875-3.688-.938-5.625H1.937zM7.5 15.063c.063-1.938.375-3.813.938-5.625H3.563c-.938 1.688-1.5 3.625-1.625 5.625h5.563zm2.938-5.625c-.625 1.813-1 3.688-1.063 5.625h13.25c-.125-1.938-.438-3.813-1.063-5.625H10.437zm-1.063 7.5c.063 1.938.438 3.813 1.063 5.625h11.125c.625-1.813.938-3.688 1.063-5.625H9.376zm15.125 0c-.063 1.938-.375 3.813-1 5.625h5c.938-1.688 1.438-3.625 1.625-5.625H24.5zm0-1.875h5.625c-.188-2-.688-3.938-1.625-5.625h-4.938c.563 1.813.875 3.688.938 5.625zM27.313 7.5c-1.813-2.375-4.375-4.188-7.375-5.063 1.188 1.625 2.188 3.313 2.938 5.063h4.438zm-10.25-5.562c-.313 0-.688-.063-1.063-.063s-.75.063-1.125.063c-1.5 1.688-2.75 3.563-3.688 5.563h9.625c-.938-2-2.188-3.875-3.75-5.563zM12 2.5c-2.938.813-5.438 2.625-7.25 5h4.375c.75-1.75 1.688-3.438 2.875-5zm-7.25 22c1.813 2.375 4.375 4.188 7.313 5.063-1.188-1.625-2.188-3.313-2.938-5.063H4.75zm10.188 5.563c.375 0 .688.063 1.063.063s.75-.063 1.063-.063c1.563-1.688 2.813-3.563 3.75-5.563h-9.625c.938 2 2.188 3.875 3.75 5.563zm5-.5c3-.875 5.563-2.688 7.375-5.063h-4.438c-.75 1.75-1.75 3.5-2.938 5.063z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-arrow-left" viewBox="0 0 32 32">
+				<path
+					d="M30.125 16.875V15H6.062L17.625 3.437 16.25 2.124 2.437 15.937 16.25 29.812l1.375-1.375L6.062 16.874h24.063z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-arrow-down" viewBox="0 0 32 32">
+				<path
+					d="M29.813 16.688L28.5 15.313 16.937 26.876v-25h-1.875v25L3.499 15.313l-1.313 1.375 13.813 13.813z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-angle-down" viewBox="0 0 32 32">
+				<path d="M30.813 9.563L29.438 8.25 16 21.688 2.562 8.25 1.187 9.563 16 24.313z"></path>
+			</symbol>
+			<symbol id="tf-ti-angle-up" viewBox="0 0 32 32">
+				<path d="M30.813 22.375L16 7.625 1.187 22.375l1.375 1.375L16 10.25l13.438 13.5z"></path>
+			</symbol>
+			<symbol id="tf-fab-twitter" viewBox="0 0 32 32">
+				<path
+					d="M28.688 9.5q.063.25.063.813 0 3.313-1.25 6.594t-3.531 6-5.906 4.406-8 1.688q-5.5 0-10.063-2.938.688.063 1.563.063 4.563 0 8.188-2.813-2.188 0-3.844-1.281t-2.281-3.219q.625.063 1.188.063.875 0 1.75-.188-1.5-.313-2.688-1.25t-1.875-2.281-.688-2.906v-.125q1.375.813 2.938.875-2.938-2-2.938-5.5 0-1.75.938-3.313Q4.69 7.251 8.221 9.063t7.531 2q-.125-.75-.125-1.5 0-2.688 1.906-4.625T22.127 3q2.875 0 4.813 2.063 2.25-.438 4.188-1.563-.75 2.313-2.875 3.625 1.875-.25 3.75-1.063-1.375 2-3.313 3.438z">
+				</path>
+			</symbol>
+			<symbol id="tf-fab-facebook" viewBox="0 0 17 32">
+				<path
+					d="M13.5 5.313q-1.125 0-1.781.375t-.844.938-.188 1.438v3.938H16l-.75 5.688h-4.563v14.313H4.812V17.69H-.001v-5.688h4.813v-4.5q0-3.563 2-5.531T12.125.002q2.688 0 4.375.25v5.063h-3z">
+				</path>
+			</symbol>
+			<symbol id="tf-fab-youtube" viewBox="0 0 36 32">
+				<path
+					d="M34.375 7.75q.188.75.344 1.875t.219 2.219.094 2.031.031 1.563v.563q0 5.625-.688 8.313-.313 1.063-1.125 1.875t-1.938 1.125q-1.188.313-4.5.469t-6.063.219h-2.75q-10.688 0-13.313-.688-2.438-.688-3.063-3-.313-1.188-.469-3.281t-.219-3.531v-1.5q0-5.563.688-8.25.313-1.125 1.125-1.938t1.938-1.125q1.188-.313 4.5-.469t6.063-.219h2.75q10.688 0 13.313.688 1.125.313 1.938 1.125t1.125 1.938zM14.5 21.125L23.438 16 14.5 10.937v10.188z">
+				</path>
+			</symbol>
+			<symbol id="tf-fab-instagram" viewBox="0 0 32 32">
+				<path
+					d="M14 8.813q3 0 5.094 2.094t2.094 5.094-2.094 5.094T14 23.189t-5.094-2.094-2.094-5.094 2.094-5.094T14 8.813zm0 11.875q1.938 0 3.313-1.375T18.688 16t-1.375-3.313T14 11.312t-3.313 1.375T9.312 16t1.375 3.313T14 20.688zM23.125 8.5q0 .688-.469 1.188t-1.156.5-1.188-.5-.5-1.188.5-1.156 1.188-.469 1.156.469.469 1.156zm4.813 1.75q.063 1.688.063 5.75t-.063 5.75q-.188 3.813-2.281 5.906t-5.906 2.219q-1.688.125-5.75.125t-5.75-.125q-3.813-.188-5.875-2.25-.813-.75-1.313-1.75t-.719-1.938-.219-2.188Q0 20.061 0 15.999t.125-5.813q.188-3.75 2.25-5.813Q4.438 2.248 8.25 2.06q1.688-.063 5.75-.063t5.75.063q3.813.188 5.906 2.281t2.281 5.906zm-3 14q.188-.5.313-1.281t.188-1.875.063-1.781v-6.625l-.063-1.781-.188-1.875-.313-1.281q-.75-1.938-2.688-2.688-.5-.188-1.281-.313t-1.875-.188-1.75-.063h-6.656l-1.781.063-1.875.188-1.281.313q-1.938.75-2.688 2.688-.188.5-.313 1.281t-.188 1.875-.063 1.75v6l.031 1.531.094 1.594.188 1.344.25 1.125q.813 1.938 2.688 2.688.5.188 1.281.313t1.875.188 1.75.063h6.656l1.781-.063 1.875-.188 1.281-.313q1.938-.813 2.688-2.688z">
+				</path>
+			</symbol>
+			<symbol id="tf-ti-music" viewBox="0 0 32 32">
+				<path
+					d="M27.813 8.375l-10.875-5v19.438c0 .125.063.188.063.313 0 3-2.5 5.5-5.5 5.5-3.063 0-5.5-2.5-5.5-5.5s2.438-5.5 5.5-5.5c1.375 0 2.625.563 3.563 1.375V.438l13.5 6.25zM11.5 26.75c2 0 3.563-1.625 3.563-3.625S13.5 19.5 11.5 19.5s-3.625 1.625-3.625 3.625S9.5 26.75 11.5 26.75z">
+				</path>
+			</symbol>
+			<style id="tf_fonts_style">
+				.tf_fa.tf-fas-home {
+					width: 1.125em
+				}
+
+				.tf_fa.tf-fab-twitter {
+					width: .998046875em
+				}
+
+				.tf_fa.tf-fab-facebook {
+					width: .98em
+				}
+
+				.tf_fa.tf-fab-youtube {
+					width: 1.125em
+				}
+			</style>
+		</defs>
+	</svg>
+
+	<link rel="prefetch" href="/css/animate.min.css?ver=3.6.2" as="style" media="all" />
+	<link rel="prefetch" href="/themify-ultra/themify/js/modules/themify.sidemenu.min.js" as="script" />
+	<link rel="prefetch" href="/themify-builder/js/modules/parallax.min.js?ver=5.0.9" as="script" />
+	<link rel="prefetch" href="/themify-builder/js/modules/menu.min.js?ver=5.0.9" as="script" />
+	<link rel="prefetch" href="/themify-ultra/themify/js/modules/tf_wow.min.js" as="script" />
+	<link rel="prefetch" href="/themify-builder/js/modules/accordion.min.js?ver=5.0.9" as="script" />
+	<link rel="prefetch" href="/themify-builder/js/modules/tab.min.js?ver=5.0.9" as="script" />
+	<link rel="prefetch" href="/themify-ultra/themify/js/modules/jquery.imagesloaded.min.js" as="script" />
+
+	<link rel="preload" as="style"
+		href="https://fonts.googleapis.com/css?family=Lato:400%7CPublic+Sans:400i,600i,700i,400,600,700&display=swap" />
+	<link id="themify-google-fonts-css" rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Lato:400%7CPublic+Sans:400i,600i,700i,400,600,700&display=swap" />
+</body>
+
+</html>

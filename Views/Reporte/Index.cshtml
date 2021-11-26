@@ -1,0 +1,1675 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Nama.Models.User
+@if (Model==null) {
+    <div data-css_id="tb_rvnb674" data-lazy="1"
+        class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_og2k674 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div class="module module-text tb_kbdb675  repeat " data-lazy="1">
+                        <div class="tb_text_wrap">
+                            <p>Login</p>
+                        </div>
+                    </div>
+                    <div class="module tf_mw module-divider tb_hp5y675 solid  divider-custom divider-left"
+                        style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;"
+                        data-lazy="1">
+                    </div>
+                    <form action="/reporte/login" method="post" style="margin-top: 4%;">                                                                
+                        <label for="username">Usuario:</label><br>
+                        <input type="text" id="username" name="username"><br>
+                        <label for="password">Contrase&ntilde;a:</label><br>
+                        <input type="password" id="password" name="password"><br>
+                        <div class="tb_text_wrap themify_builder_content-276 ">
+                            <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                        </div>
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {
+        HttpContextAccessor.HttpContext.Session.SetString("message","");
+    }
+}
+else {
+    <script>
+        function seleccionar(objeto){
+            jQuery(".detalleactividad").attr("aria-hidden","true");
+            jQuery("."+objeto.value).attr("aria-hidden","false");
+            jQuery(objeto).parent().find("form").find("input[type='hidden']").attr("value",objeto.value.substring(4));
+        }
+    </script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 2%;
+            text-align: left;
+        }
+    </style>
+
+    <div data-css_id="tb_rvnb674" data-lazy="1"
+        class="themify_builder_row module_row fullwidth_row_container tb_rvnb674 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_og2k674 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div class="module module-text tb_kbdb675  repeat " data-lazy="1">
+                        <div class="tb_text_wrap">
+                            <p>Avances en la ejecución de actividades</p>
+                        </div>
+                    </div>
+                    <div class="module tf_mw module-divider tb_hp5y675 solid  divider-custom divider-left"
+                        style="border-width: 6px;border-color: #ea0001;margin-top: -30px;width: 150px;"
+                        data-lazy="1">
+                    </div>
+                    <h5>Entidades responsables en la matriz NAMA TRANSPerú</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-css_id="tb_8kch6" data-lazy="1"
+        class="themify_builder_row module_row tb_8kch6 clearfix">
+        <div class="row_inner col_align_top tf_box tf_w tf_rel">
+            <div data-lazy="1"
+                class="module_column tb-column col-full first tb_be4b7 tf_box">
+                <div class="tb-column-inner tf_box tf_w">
+                    <div id="tb_ftcg7"
+                        class="module ui module-tab tb_ftcg7 vertical tab-style-default  tb_default_color "
+                        data-lazy="1">
+                        <div class="builder-tabs-wrap tf_rel">
+                            <span class="tab-nav-current-active tf_hide">MML</span>
+                            <ul class="tab-nav clearfix">
+                                @if (Model.Entidad=="MML"||Model.Rol=="admin") {
+                                    <li class="current" aria-expanded="true">
+                                        <a href="#tab-tb_ftcg7-0">
+                                            <span>MML</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.Entidad=="ATU"||Model.Rol=="admin") {
+                                    <li aria-expanded="false">
+                                        <a href="#tab-tb_ftcg7-1">
+                                            <span>ATU</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.Entidad=="MEF"||Model.Rol=="admin") {
+                                    <li aria-expanded="false">
+                                        <a href="#tab-tb_ftcg7-2">
+                                            <span>MEF</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.Entidad=="MVCS"||Model.Rol=="admin") {
+                                    <li aria-expanded="false">
+                                        <a href="#tab-tb_ftcg7-3">
+                                            <span>MVCS</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.Entidad=="MINAM"||Model.Rol=="admin") {
+                                    <li aria-expanded="false">
+                                        <a href="#tab-tb_ftcg7-4">
+                                            <span>MINAM</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.Entidad=="MINEM"||Model.Rol=="admin") {
+                                    <li aria-expanded="false">
+                                        <a href="#tab-tb_ftcg7-5">
+                                            <span>MINEM</span>
+                                        </a>
+                                    </li>
+                                }
+                                @if (Model.Entidad=="MTC"||Model.Rol=="admin") {
+                                    <li aria-expanded="false">
+                                        <a href="#tab-tb_ftcg7-6">
+                                            <span>MTC</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            @if (Model.Entidad=="MML"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-0" class="tab-content" aria-hidden="false">
+                                    <div class="tb_text_wrap">
+                                                                                <select onchange="seleccionar(this);">
+                                              <option value="" selected disabled>Seleccionar</option>
+                                            <option value="mml-04">Actividad 04</option>
+                                            <option value="mml-07">Actividad 07</option>
+                                            <option value="mml-08">Actividad 08</option>
+                                            <option value="mml-12">Actividad 12</option>
+                                            <option value="mml-14">Actividad 14</option>
+                                            <option value="mml-15">Actividad 15</option>
+                                            <option value="mml-16">Actividad 16</option>
+                                            <option value="mml-19">Actividad 19</option>
+                                            <option value="mml-20">Actividad 20</option>
+                                        </select>
+
+                                        <div class="mml-04 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(04) Ampliar el Tramo Norte del COSAC I desde la Estación El Naranjal hasta la Av. Chimpu Ocllo</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Obra de ampliación del Tramo Norte del COSAC I con 100% de avance (abr-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Reestructuración de las rutas alimentadoras y la extensión de los servicios troncales (dic-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución del proyecto</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-07 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(07) Actualización del estudio de preinversión para el desarrollo del servicio de accesibilidad por cable que conecte los distritos de Independencia y San Juan de Lurigancho</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Estudio de preinversión viable (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informe de viabilidad</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-08 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(08) Actualización del estudio de preinversión para el desarrollo del servicio de accesibilidad por cable en los cerros de El Agustino y Catalina Huanca</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Estudio de preinversión viable (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informe de viabilidad</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-12 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(12) Formulación en coordinación con el MVCS del Plan de Desarrollo Metropolitano de la Provincia de Lima en el cual se prevé acciones de corto, mediano y largo plazo</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Plan de Desarrollo Metropolitano de la Provincia de Lima formulado y aprobado (set-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Planes de Desarrollo Urbano de Lima Metropolitana formulados y aprobados (dic-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Implementación de acciones de corto plazo del PDM de la provincia de Lima (hasta 2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Planes aprobados
+
+Informes de ejecución del PDM</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-14 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(14) Desarrollar mega eventos para promover la movilidad urbana sostenible mediante el transporte no motorizado</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>De manera permanente continuar con el Damero de Pizarro y las ciclovías recreativas en avenidas de la ciudad
+
+1 evento sobre movilidad no motorizada (jun-2022)
+
+1  evento dirigido a la comunidad ciclista (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>De manera permanente continuar con el Damero de Pizarro y las ciclovías recreativas en avenidas de la ciudad
+
+2 eventos sobre movilidad no motorizada (jun-2023 y jun-2024)
+
+2 eventos dirigido a la comunidad ciclista (jun-2023 y jun-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>De manera permanente continuar con el Damero de Pizarro y las ciclovías recreativas en avenidas de la ciudad
+
+1 evento sobre movilidad no motorizada (jun-2022)
+
+1  evento dirigido a la comunidad ciclista (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución de los eventos</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-15 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(15) Crear ciclovías en Lima Metropolitana</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Obras de proyectos de red cicloviaria en San Juan de Lurigancho y Los Olivos por 15.8 km (jul-2021)
+
+Expedientes Técnicos de proyectos de ciclovías aprobados en Villa el Salvador, Breña, Jesús María, Pueblo Libre, Cercado de Lima y la Victoria por 20.59 km (oct-2021)
+
+Obras de proyectos de ciclovías ejecutadas en Villa el Salvador, Breña, Jesús María, Pueblo Libre, Cercado de Lima y la Victoria por 20.51 km (oct-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Red de ciclovias de 135km en Lima (dic-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Expedientes técnicos aprobados
+
+Informes de obras ejecutadas</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-16 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(16) Rehabilitar ciclovías existentes en Lima Metropolitana</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>45.57 km de ciclovías rehabilitadas en avenida emblemáticas de Lima (oct-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Rehabilitación de todas las ciclovias existentes (dic-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de rehabilitaciones ejecutadas</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-19 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(19) Promover campañas de sensibilización para mejorar la convivencia vial entre los actores de la movilidad urbana (peatón, ciclista y conductores)</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Promover con el 25% de las Municipalidades Distritales de la ciudad el desarrollo de campañas de sensibilización para mejorar la convivencia vial entre los actores de la movilidad urbana (jun-2022)
+
+Realizar 2 campañas masivas con apoyo de la PNP para multar a los motorizados que invaden y obstruyen las ciclovías (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Promover con el 25% de las Municipalidades Distritales de la ciudad el desarrollo de campañas de sensibilización para mejorar la convivencia vial entre los actores de la movilidad urbana (jun-2023 y jun-2024)
+
+Realizar 2 campañas masivas con apoyo de la PNP para multar a los motorizados que invaden y obstruyen las ciclovías (jun-2023 y jun-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Promover con el 25% de las Municipalidades Distritales de la ciudad el desarrollo de campañas de sensibilización para mejorar la convivencia vial entre los actores de la movilidad urbana (jun-2025)
+
+Realizar 2 campañas masivas con apoyo de la PNP para multar a los motorizados que invaden y obstruyen las ciclovías (jun-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de campañas de promoción</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-20 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(20) Desarrollar programas de movilidad en bicicleta para promover el uso seguro de este vehículo por la ciudad (Al cole en bici, A la uni en bici, Al trabajo en bici, Escuela de Ciclismo Urbano Descentralizada, Asistencia mecánica, entre otros)</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Programas "Al Cole en bici" y "A la Uni en bici" implementados (jun-2022)
+
+Escuela de ciclismo urbano descentralizada (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Programas "Al trabajo en bici" y "Asistencia mecánica" implementados (jun-2023)
+
+Programas operativos (jun-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Programas operativos (jun-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de implementación y operación de programas</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        @if (Model.Entidad=="MML") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">   
+                                                <input type="hidden" id="actividad" name="actividad" value="">                                                             
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Entidad=="ATU"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-1" class="tab-content" aria-hidden="@(Model.Rol=="admin"?"true":"false")">
+                                    <div class="tb_text_wrap">
+                                        <select onchange="seleccionar(this);">
+                                              <option value="" selected disabled>Seleccionar</option>
+                                            <option value="mml-02">Actividad 02</option>
+                                            <option value="mml-03">Actividad 03</option>
+                                            <option value="mml-05">Actividad 05</option>
+                                            <option value="mml-06">Actividad 06</option>
+                                            <option value="mml-09">Actividad 09</option>
+                                            <option value="mml-10">Actividad 10</option>
+                                            <option value="mml-11">Actividad 11</option>
+                                            <option value="mml-17">Actividad 17</option>
+                                            <option value="mml-18">Actividad 18</option>
+                                            <option value="mml-21">Actividad 21</option>
+                                            <option value="mml-25">Actividad 25</option>
+                                            <option value="mml-26">Actividad 26</option>
+                                            <option value="mml-27">Actividad 27</option>
+                                            <option value="mml-28">Actividad 28</option>
+                                            <option value="mml-29">Actividad 29</option>
+                                            <option value="mml-32">Actividad 32</option>
+                                            <option value="mml-40">Actividad 40</option>
+                                            <option value="mml-41">Actividad 41</option>
+                                        </select>
+
+                                        <div class="mml-02 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(02) Ejecutar el proyecto de inversión de la Línea 3 del Metro de Lima</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Inicio de procesos de licitación para contratar la ejecución del proyecto</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Línea 3 del Metro de Lima en fase de ejecución</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Línea 3 del Metro de Lima en fase de ejecución (dic-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución del proyecto</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-03 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(03) Ejecutar el proyecto de inversión de la Línea 4 del Metro de Lima</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Inicio de procesos de licitación para contratar la ejecución del proyecto</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Línea 3 del Metro de Lima en fase de ejecución</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Línea 3 del Metro de Lima en fase de ejecución (dic-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución del proyecto</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-05 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(05) Segregación de los Corredores Complementarios Rojo, Azul y Morado para el tránsito exclusivo de los buses de transporte público</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Estudios de evaluación sobre la operación de las segregaciones en los corredores con dispositivos móviles (ago-2021)
+
+Ejecución de las segregaciones en los corredores con dispositivos fijos (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Estudios de evaluación
+
+Informes de ejecución de segregación</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-06 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(06) Formulación del Plan de Movilidad Urbana para el área metropolitana de Lima y Callao al 2040</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Plan de Movilidad Urbana aprobado (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Acciones de corto plazo del plan ejecutadas (dic-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-09 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(09) Remodelación del Sistema de Control de Pasajeros de la Línea 1 de la Red Básica del Metro de Lima</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Viabilidad del proyecto</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Fase de ejecución</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Remodelación del Sistema de Control de Pasajeros implementado.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución del proyecto</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-10 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(10) Estudio de preinversion a nivel de perfil del Proyecto: “Creación del Centro de Control y Cámara de Compensación para la Red del Metro de Lima y Callao”</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Viabilidad del proyecto</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Fase de ejecución</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Centro de control y cámara de de compensación implementado.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución del proyecto</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-11 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(11) Implementación del Sistema de Recaudo Integrado en Lima Metropolitana</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Reglamento del Sistema de Recaudo Integrado aprobado (jun-2021)
+
+Adecuación de las tarjetas de la Línea 1 del Metro de Lima al Sistema de Recaudo Integrado (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Definición de estándar de pagos mediante sistemas abiertos (tecnología EMV) (dic-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Sistema de Recaudo Integrado implementado (incluyendo la Cámara de Compensación y el Centro de Control) (dic-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de ejecución del proyecto</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-17 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(17) Diseñar, planificar, desarrollar y monitorear la implementación del Sistema de Transporte Individual Sostenible (SITIS) en Lima y Callao</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Coordinación con Gobiernos Locales vías de intervención de SITIS  (dic-2021)
+
+Implementación de las ciclovias  en coordinación con los Gobiernos Locales (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Plan de implementación de SITIS
+
+Informes de ejecución de ciclovías</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-18 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(18) Fortalecer el componente de intermodalidad en el Sistema Integrado de Transporte (SIT) de Lima y Callao para su articulación con el SITIS, de tal forma que las usuarias y los usuarios puedan integrar sus viajes en modos de transporte individuales (bicicleta, scooter, entre otros) con los modos de transporte masivos</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Desarrollar condiciones que permitan promover los viajes seguros en medios de transporte no motorizados en el SIT  </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Plan de implementación de SITIS</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-21 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(21) Desarrollar acciones para la promoción de la movilidad sostenible en Lima y Callao con entidades del Estado y/o empresas, a efectos de que prioricen y faciliten el modo de transporte no motorizado</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Aprobación de lineamientos y acompañamiento a las entidades y/o empresas </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Entidades implementando acciones para la promoción de la movilidad sostenible.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Lineamientos aprobados
+
+Informe de entidades implementando acciones para la promoción de la movilidad sostenible </td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-25 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(25) Aprobar los Reglamentos de los Servicios de Transporte en Lima y Callao (Regular, Taxi y Especial)</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Propuesta de Reglamentos de Servicios de Transporte: (i) Especial (turísitico, escolar y de personal), (ii) Taxi y (iii) Regular (jun-2021)
+
+Reglamentos de servicios de transporte aprobados (dic-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Reglamentos aprobados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-26 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(26) Aprobar el Texto Único de Procedimientos Administrativos de la ATU</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Fichas ACR elaboradas (jun-2021)
+
+Propuesta de TUPA elaborada (dic-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>TUPA aprobado (dic-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>TUPA aprobado</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-27 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(27) Aprobar el Plan Estratégico Institucional de la ATU</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Propuesta de PEI 2021-2024 (mar-2021)
+
+PEI 2021-2024 aprobado (jun-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>PEI 2021-2024 actualizado (jun-2023)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>PEI 2021-2024 aprobado</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-28 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(28) Promover la digitalización de los procedimientos de atención al administrado</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>10% de los procedimientos de atención al ciudadano digitalizados para ser atendidos mediante la mesa de partes virtual de la entidad (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>20% adicional de los procedimientos de atención al ciudadano digitalizados para ser atendidos mediante la mesa de partes virtual de la entidad (jun-2023)
+
+20% adicional de los procedimientos de atención al ciudadano digitalizados para ser atendidos mediante la mesa de partes virtual de la entidad (jun-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Dispositivo normativo que aprueba los procedimientos virtuales</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-29 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(29) Desarrollar instrumentos que permitan realizar el seguimiento del cumplimiento de hitos en el marco de la ejecución de las actividades operativas y de inversión priorizadas en la ATU</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Cuadros de mando Integral en funcionamiento para elevar información a la Alta Dirección para la toma de decisiones en relación al avance de obra y operación y mantenimiento de las Líneas de Metro, COSAC y Corredores Complementarios (mar-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Cuadros de mando integral actualizados para el seguimiento de la ejecución de actividades operativas y de inversión priorizadas en la ATU (dic-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Cuadro de Mando Integral en funcionamiento</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-32 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(32) Desarrollo del reporte MRV que incluye la línea BaU GEI para Lima Callao sobre transporte urbano y 02 escenarios de mitigación desarrollados de forma anualizada desde 2010 hasta 2030 en concordancia con las NDCs</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Línea Base aprobada e incluida en la actualización de las NDC de transporte urbano para Lima y Callao</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>- Documento de línea de base</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-40 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(40) Aprobar e implementar paulatinamente el bus patrón en el Sistema Integrado de Transportes de Lima y Callao</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Marzo 2021: Prepublicación de las características técnicas de los buses patrón: Gnv y Diesel.
+
+- Mayo 2021: Marco regulatorio aprobado, incluyendo las características de los buses patrón.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>-Diciembre del 2025: 3% del parque vehicular se encuentra adecuado a los buses patrón en base a los requerimientos sujeto en las concesiones.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Dispositivos normativos publicados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-41 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(41) Implementar el Programa de chatarreo en Lima y Callao, priorizando los vehículos que compiten con las líneas del Metro, Metropolitano, Corredores Complementarios, Corredores de Integración y Rutas Alimentadoras</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>- Junio 2022: 1976 vehículos de transporte urbano chatarrizados.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Junio 2023: 2790 vehículos de transporte urbano chatarrizados.
+
+- Junio 2024: 544 vehículos de transporte urbano chatarrizados.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>Junio 2025: 617 vehículos de transporte urbano chatarrizados.
+
+- Diciembre 2025: 6343 vehículos de transporte urbano chatarrizados.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes anuales de chatarrización
+
+Plataforma nacional de vehículos chatarrizados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+                                        @if (Model.Entidad=="ATU") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">                                                    
+                                                <input type="hidden" id="actividad" name="actividad" value="">            
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Entidad=="MEF"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-2" class="tab-content" aria-hidden="@(Model.Rol=="admin"?"true":"false")">
+                                    <div class="tb_text_wrap">
+                                        <p>Por Agregar</p>
+                                        @if (Model.Entidad=="MEF") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">             
+                                                <input type="hidden" id="actividad" name="actividad" value="">                                                   
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Entidad=="MVCS"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-3" class="tab-content"
+                                    aria-hidden="@(Model.Rol=="admin"?"true":"false")">
+                                    <div class="tb_text_wrap">
+                                        <select onchange="seleccionar(this);">
+                                              <option value="" selected disabled>Seleccionar</option>
+                                            <option value="mml-46">Actividad 46</option>
+                                            <option value="mml-48">Actividad 48</option>
+                                        </select>
+
+                                        <div class="mml-46 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(46) Formular y publicar el Manual para la Elaboración de Planes de Movilidad Urbana Sostenible.</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Manual para la Elaboración de Planes de Movilidad Urbana Sostenible aprobado (oct-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Manual del PMUS aprobado</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-48 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(48) Brindar Asistencia Técnica y/o Ficiera del MVCS a los GL para la elaboración de Planes de Acondicionamiento Territorial y Planes de Desarrollo Urbano.</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>68 planes aprobados (oct-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Ordezas Municipales que aprueban los planes</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+                                        @if (Model.Entidad=="MVCS") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">                            
+                                                <input type="hidden" id="actividad" name="actividad" value="">                                    
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Entidad=="MINAM"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-4" class="tab-content"
+                                    aria-hidden="@(Model.Rol=="admin"?"true":"false")">
+                                    <div class="tb_text_wrap">
+                                        <select onchange="seleccionar(this);">
+                                              <option value="" selected disabled>Seleccionar</option>
+                                            <option value="mml-33">Actividad 33</option>
+                                            <option value="mml-34">Actividad 34</option>
+                                            <option value="mml-37">Actividad 37</option>
+                                        </select>
+
+                                        <div class="mml-33 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(33) Actualizar los LMP enfocados a lograr la norma de emisiones EURO 6/VI</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Aprobación de los Límites Máximos Permisibles de emisiones vehiculares (Euro 6/VI)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>Entrada en Vigencia de la Norma de Emisiones Vehiculares Euro 6/VI </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td> Acciones complementarias para Norma Emisiones</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Decreto Supremo que aprueba la normativa EURO 6/VI</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-34 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(34) Actualizar el Índice de Nocividad de Combustibles – INC</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>INC 2021-2022</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>INC 2023-2024</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>INC 2025-2026</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Decreto Supremo que aprueba el INC</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-37 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(37) Desarrollar los Inventarios de Emisiones Vehiculares de Contamites criterio y Carbono Negro para las ZAP</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>- Inventario de emisiones de fuentes móviles en 3 ZAP (entre 2021 y junio 2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>- Inventario de emisiones de fuentes móviles en 4 ZAP (entre julio 2022 y junio 2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>- Inventario de emisiones de fuentes móviles en 5 ZAP (entre julio 2024 y diciembre 2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>- Inventarios aprobados y publicados que formaran parte de los Planes de Acción para mejora de calidad del aire aprobados por el Gobierno local de las ZAP</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+                                        @if (Model.Entidad=="MINAM") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">                                            
+                                                <input type="hidden" id="actividad" name="actividad" value="">                    
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Entidad=="MINEM"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-5" class="tab-content"
+                                    aria-hidden="@(Model.Rol=="admin"?"true":"false")">
+                                    <div class="tb_text_wrap">
+                                        <select onchange="seleccionar(this);">
+                                              <option value="" selected disabled>Seleccionar</option>
+                                            <option value="mml-42">Actividad 42</option>
+                                        </select>
+
+                                        <div class="mml-42 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(42) Aprobación de las normas complementarias al DS 022-2020-EM</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Resolución Ministerial que aprueba el Plan de Uso Eficiente de la Energía que defina las acciones estratégicas y sectoriales sobre infraestructura de carga y abastecimiento de energía eléctrica para la movilidad eléctrica (1º semestre 2021)
+
+- DS del Reglamento para la instalación y operación de la infraestructura de carga de la movilidad eléctrica (2º semestre 2021)
+
+- DS prepublicado de la reglamentación correspondiente al etiquetado de eficiencia energética de vehículos que incluya a la movilidad eléctrica, en coordinación con los sectores involucrados (junio 2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td> Dispositivos legales que publican o prepublican las normas complementarias</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+                                        @if (Model.Entidad=="MINEM") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">                                         
+                                                <input type="hidden" id="actividad" name="actividad" value="">                       
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Entidad=="MTC"||Model.Rol=="admin") {
+                                <div data-id="tab-tb_ftcg7-6" class="tab-content"
+                                    aria-hidden="@(Model.Rol=="admin"?"true":"false")">
+                                    <div class="tb_text_wrap">
+                                        <select onchange="seleccionar(this);">
+                                              <option value="" selected disabled>Seleccionar</option>
+                                            <option value="mml-36">Actividad 36</option>
+                                            <option value="mml-38">Actividad 38</option>
+                                            <option value="mml-39">Actividad 39</option>
+                                            <option value="mml-43">Actividad 43</option>
+                                            <option value="mml-44">Actividad 44</option>
+                                            <option value="mml-45">Actividad 45</option>
+                                            <option value="mml-47">Actividad 47</option>
+                                            <option value="mml-49">Actividad 49</option>
+                                            <option value="mml-50">Actividad 50</option>
+                                            <option value="mml-51">Actividad 51</option>
+                                            <option value="mml-52">Actividad 52</option>
+                                            <option value="mml-53">Actividad 53</option>
+                                        </select>
+
+                                        <div class="mml-36 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(36) Aprobar la modificación normativa para la promoción del Sistema de GNV</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Desarrollar el diagnóstico del estado del Sistema de GNV y la planificación de su promoción al 2031. (dic-2021)
+
+Elaborar la propuesta normativa para reformar el Sistema de GNV  (abr-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>- Aprobar la propuesta normativa para reformar el Sistema de GNV (ago-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>- Dispositivo normativo que aprueba la modificación</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-38 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(38) Desarrollar el Sistema de Información para la automatización en la obtención y procesamiento de información de base del parque automotor en los niveles de gobierno subnacional para la estimación de emisiones de GEI</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Actualización de la "Directiva N° 001-2013-MTC/02 - SINARETT" (julio 2021)
+
+Diseño y puesta en producción del Sistema de Información (feb-2022)
+
+Incorporación de información de las Municipalidades Provinciales de las Metrópolis Regionales (junio-2022).</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>- Incorporación de información de las municipalidades provinciales de las principales ciudades del país (junio-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>- Informes de ejecución y operación del sistema</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-39 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(39) Implementar el Decreto de Urgencia Nº 029-2019 que establece incentivos para el fomento del chatarreo</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Entrada en vigencia (abril 2021) del "Reglamento Nacional de Fomento de Chatarreo"
+
+- Aprobación de "Metodología para el cálculo del incentivo de los  Programas de Chatarrización" (junio 2021)
+
+- Aprobación de "Metodología para el cálculo de emisiones evitadas con la implementación de los PCH y la valoración de externalidades ambientales" (junio 2021)
+
+- Aprobación de "Especificaciones Técnicas de Cámaras de Video para las Entidades de Chatarreo" (junio 2021)
+
+- Aprobación de "Especificaciones de los componentes técnicos y estructurales de los vehículos" (junio 2021)
+
+- Publicación de cursos virtuales asincrónicos sobre la normativa de chatarreo dirigidos a los GL (noviembre 2021)
+
+- Desarrollo de reuniones macroregionales para atención de consultas de los GL (setiembre 2021)
+
+- Aprobación de Guía para el desarrollo de programas de chatarreo en ciudades del ámbito de PROMOVILIDAD (noviembre 2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Dispositivos normativos publicados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-43 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(43) Modificar el Reglamento Nacional de Vehículos para introducir las características de los vehículos eléctricos en la normativa nacional</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>Desarrollar el diagnóstico de los aspectos legales que deben desarrollarse en el Reglamento Nacional de Vehículos para la incorporación de las características de los vehículos eléctricos. (nov-2021)
+
+- Elaborar la propuesta normativa para la incorporación de los aspectos legales correspondientes. (feb-2022)
+
+- Aprobar la propuesta normativa correspondiente. (junio-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Dispositivos normativos publicados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-44 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(44) Elaborar y aprobar el marco normativo que brinde facilidades para el tránsito de vehículos eléctricos</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>- Modificar el Reglamento de Jerarquización Vial en lo referido a los criterios para las declaraciones de áreas o vías de acceso restringido a efectos de dar preferencia a los vehículos ecoamigables (jun-2022).</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Dispositivos normativos publicados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-45 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(45) Modificar el Reglamento del SITV para fortalecerlo</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>- Desarrollar el diagnóstico de las principales fallas del SITV (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>- Elaborar (dic-2022) y aprobar (abr-2023) la propuesta normativa para reformar el SITV hacia un modelo más eficiente</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Diagnósticos elaborados
+Dispositivos normativos propuestos</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-47 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(47) Implementar el Programa Presupuestal 0148: Reducción del Tiempo, Inseguridad y Costo Ambiental en el Transporte Urbano.</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>15 Municipalidades Provinciales que implementan adecuadamente el PP0148 (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>29 Municipalidades Provinciales (en total) que implementan adecuadamente el PP0148 (jun-2023)
+
+29 Municipalidades Provinciales (en total) que implementan adecuadamente el PP0148 (jun-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>29 Municipalidades Provinciales (en total) que implementan adecuadamente el PP0148 (dic-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes anuales de programación presupuestal</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-49 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(49) Brindar Asistencia Técnica y Ficiera de PROMOVILIDAD a los GL para la elaboración de Planes de Movilidad Urbana Sostenible (PMUS).</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>10 PMUS aprobados y en implementación (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>7 PMUS aprobados y en implementación (jun-2023)
+
+7 PMUS aprobados y en implementación (jun-2024)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Ordezas Municipales que aprueban los PMUS</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-50 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(50) Brindar Asistencia Técnica y Ficiera de PROMOVILIDAD a los GL para la elaboración de Planes de Sistemas Inteligentes de Transportes.</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>2 Planes de Sistemas Inteligentes de Transportes en ciudades elaborados y aprobados (jun-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Ordezas Municipales que aprueban los PMUS</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-51 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(51) Brindar Asistencia Técnica y Ficiera de PROMOVILIDAD a los GL para la elaboración de Estudios de Chatarrización.</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>2 estudios de diseño de programas de chatarrización en ciudades elaborados (jun-2023)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>2 programas de chatarrización en ciudades aprobados y en proceso de inicio (ene-2025)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Estudios y programas de chatarrización aprobados por las entidades competentes</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-52 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(52) Desarrollar acciones de Fortalecimiento de Capacidades en los funcionarios y servidores públicos de los GL.</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>5 Municipalidades Provinciales con funcionarios capacitados para la gestión eficiente del transporte urbano (dic-2021)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>10 Municipalidades Provinciales (dic-2022) y 7 Municipalidades Provinciales (dic-2023) con el funcionarios capacitados para la gestión eficiente del transporte urbano</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td>7 Municipalidades Provinciales (dic-2024) con funcionarios capacitados para la gestión eficiente del transporte urbano</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Informes de programas de capacitación</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+
+
+                                        <div class="mml-53 detalleactividad tab-content" aria-hidden="true" style="margin-left: 0px;">
+                                            <p>(53) Elaborar estudios de preinversión para la implementación de SIT</p>
+                                                <table>
+                                                    <tr>
+                                                        <th witdth="25%">Indicador</th>
+                                                        <th witdth="75%">Descripción</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2022</td>
+                                                        <td>1  Estudio de pre-inversión para el SIT de Trujillo viable (junio-2021)
+
+1 Estudio de pre-inversión para el SIT de Piura viable (dic-2021)
+
+1 Estudio de pre-inversión para el SIT de Cusco viable (junio-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Junio 2024</td>
+                                                        <td>1 Estudio de pre-inversión para el SIT de Arequipa viable (dic-2022)
+
+1 Estudio de pre-inversión para el SIT de Trujillo viable (dic-2022)
+
+1 Estudio de pre-inversión para el SIT de Piura viable (dic-2022)
+
+1 Estudio de pre-inversión para el SIT de Ayacucho viable (dic-2022)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Meta Diciembre 2025</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Medios de verificación</td>
+                                                        <td>Estudios aprobados</td>
+                                                    </tr>
+                                                </table>
+                                        </div>
+                                        @if (Model.Entidad=="MTC") {
+                                            <form action="/reporte/guardaravance" method="post" enctype="multipart/form-data">
+                                                <input type="hidden" id="actividad" name="actividad" value="">
+                                                <label for="trimestre">Trimestre:</label><br>
+                                                <input type="month" id="trimestre" name="trimestre" step="3" min="2021-01" max="2025-12"><br>
+                                                <label for="description ">Descripci&oacute;n:</label><br>
+                                                <textarea rows="4" cols="50" id="description " name="description"></textarea><br>
+                                                <label for="sustento ">Sustento:</label><br>
+                                                <input type="file" name="sustento" id="sustento">
+                                                <div class="tb_text_wrap themify_builder_content-276 ">
+                                                    <p style="color: rgba(255,0,0,1);">@HttpContextAccessor.HttpContext.Session.GetString("message")</p>
+                                                </div><br><br>
+                                                <input type="submit" value="Submit">
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {
+        HttpContextAccessor.HttpContext.Session.SetString("message","");
+    }
+}
