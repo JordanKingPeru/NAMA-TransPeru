@@ -39,7 +39,8 @@ namespace Nama
                 services.AddDbContext<AppDbContext>(options => options.UseOracle(connectionString,opt => opt.UseOracleSQLCompatibility(version)));
             }
             else
-                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+                /* services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString)); */
+                services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
             services.AddSession(options =>
             {
