@@ -2051,7 +2051,7 @@ div.module_column {
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 24%;
-    background-image: url(/assets/images/img/transporte-corregido-mascarillas3.png);
+    background-image: url(/assets/images/img/portada_transporte.png);
     padding-top: 0
 }
 
@@ -3359,7 +3359,7 @@ div.module_column {
     background-size: cover;
     padding-top: 200px;
     padding-bottom: 400px;
-    background-image: url(/assets/images/img/transporte-corregido-mascarillas3.png);
+    background-image: url(/assets/images/img/portada_transporte.png);
     margin-top: -6%
 }
 
@@ -3783,7 +3783,7 @@ div.module_column {
     background-size: cover;
     padding-top: 200px;
     padding-bottom: 400px;
-    background-image: url(/assets/images/img/transporte-corregido-mascarillas3.png);
+    background-image: url(/assets/images/img/portada_transporte.png);
     margin-top: -6%
 }
 
@@ -4213,7 +4213,7 @@ div.module_column {
 
 .themify_builder_content-276 .tb_8awj962.module-accordion .ui.module-accordion .accordion-title .accordion-icon,
 .themify_builder_content-276 .tb_8awj962.module-accordion .ui.module-accordion .accordion-title .accordion-active-icon {
-    margin-top: -7%;
+    margin-top: 0%;
     padding-top: 0%
 }
 
@@ -6187,7 +6187,7 @@ div.module_column {
     .themify_builder_content-276 .tb_jq7m721.module-text .tb_text_wrap h6,
     .themify_builder_content-276 .tb_jq7m721.module-text .tb_text_wrap li,
     .themify_builder_content-276 .tb_jq7m721.module-text .tb_text_wrap span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none;
@@ -6255,7 +6255,7 @@ div.module_column {
     .themify_builder_content-276 .tb_fnyl130.module-text .tb_text_wrap h6,
     .themify_builder_content-276 .tb_fnyl130.module-text .tb_text_wrap li,
     .themify_builder_content-276 .tb_fnyl130.module-text .tb_text_wrap span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none;
@@ -6389,7 +6389,7 @@ div.module_column {
     .themify_builder_content-276 .tb_j1vl495.module-text .tb_text_wrap h6,
     .themify_builder_content-276 .tb_j1vl495.module-text .tb_text_wrap li,
     .themify_builder_content-276 .tb_j1vl495.module-text .tb_text_wrap span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none;
@@ -6545,7 +6545,7 @@ div.module_column {
     .themify_builder_content-276 .tb_0tt4472.module-text .tb_text_wrap h6,
     .themify_builder_content-276 .tb_0tt4472.module-text .tb_text_wrap li,
     .themify_builder_content-276 .tb_0tt4472.module-text .tb_text_wrap span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none;
@@ -6638,14 +6638,14 @@ div.module_column {
     .themify_builder_content-276 .tb_r4hb675.module-text .tb_text_wrap h6,
     .themify_builder_content-276 .tb_r4hb675.module-text .tb_text_wrap li,
     .themify_builder_content-276 .tb_r4hb675.module-text .tb_text_wrap span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none;
         font-family: "Arial", "Helvetica", sans-serif
     }
     .themify_builder_content-276 .tb_12js123.module-icon span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none
@@ -6658,7 +6658,7 @@ div.module_column {
         font-size: 12px;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: -7%
+        margin-top: 0%
     }
     .themify_builder_content-276 .tb_juv3480.module-text .tb_text_wrap,
     .themify_builder_content-276 .tb_juv3480.module-text .tb_text_wrap p,
@@ -6682,7 +6682,7 @@ div.module_column {
         font-size: 12px;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: -7%
+        margin-top: 0%
     }
     .themify_builder_content-276 .tb_o0od693.module-text .tb_text_wrap,
     .themify_builder_content-276 .tb_o0od693.module-text .tb_text_wrap p,
@@ -6706,7 +6706,7 @@ div.module_column {
         font-size: 12px;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: -7%
+        margin-top: 0%
     }
     .themify_builder_content-276 .tb_0y90419.module-text .tb_text_wrap,
     .themify_builder_content-276 .tb_0y90419.module-text .tb_text_wrap p,
@@ -6730,7 +6730,7 @@ div.module_column {
         font-size: 12px;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: -7%
+        margin-top: 0%
     }
     .themify_builder_content-276 .tb_16xv152.module-text .tb_text_wrap,
     .themify_builder_content-276 .tb_16xv152.module-text .tb_text_wrap p,
@@ -6754,7 +6754,7 @@ div.module_column {
         font-size: 12px;
         margin-left: 10%;
         margin-right: 10%;
-        margin-top: -7%
+        margin-top: 0%
     }
     .themify_builder_content-276 .tb_zzzg823.module-text .tb_text_wrap,
     .themify_builder_content-276 .tb_zzzg823.module-text .tb_text_wrap p,
@@ -6935,7 +6935,7 @@ div.module_column {
     .themify_builder_content-276 .tb_hx43237.module-text .tb_text_wrap h6,
     .themify_builder_content-276 .tb_hx43237.module-text .tb_text_wrap li,
     .themify_builder_content-276 .tb_hx43237.module-text .tb_text_wrap span {
-        color: rgba(162, 197, 51, 1);
+        color: rgba(234, 0, 1, 1);
         -webkit-background-clip: border-box;
         background-clip: border-box;
         background-image: none;
